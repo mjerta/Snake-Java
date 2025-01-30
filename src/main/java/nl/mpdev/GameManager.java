@@ -17,6 +17,9 @@ public class GameManager extends JFrame {
     this.setTitle("Snake (Java)");
     this.setLayout(new BorderLayout()); // Testing with layout
     this.setVisible(true);
+    this.grid = new Grid(700,1000);
+    this.add(grid,BorderLayout.WEST);
+
   }
 
   public static GameManager getInstance() {

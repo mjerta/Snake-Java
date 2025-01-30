@@ -7,6 +7,7 @@ public class Grid extends JPanel {
 
   public Grid(int width, int height) {
     this.setPreferredSize(new Dimension(width,height));
+    this.setBackground(Color.BLACK);
   }
 
   @Override
