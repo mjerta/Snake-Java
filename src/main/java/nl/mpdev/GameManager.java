@@ -13,11 +13,12 @@ public class GameManager extends JFrame {
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setSize(600, 600);
+    this.setPreferredSize(new Dimension(600,450));
     this.setTitle("Snake (Java)");
     this.setLayout(new BorderLayout()); // Testing with layout
     this.setVisible(true);
-    this.grid = new Grid(450,600);
+    this.grid = new Grid(450,450);
+    this.pack();
     this.add(grid,BorderLayout.WEST);
 
   }
