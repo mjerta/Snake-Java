@@ -1,14 +1,17 @@
 package nl.mpdev;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class Grid extends JPanel {
 
-  public Grid() {
+  public Grid(int width, int height) {
+    this.setPreferredSize(new Dimension(width,height));
   }
 
   @Override
-  private void paintComponent() {
-
+  protected void paintComponent(Graphics g) {
+    super.paintComponent(g);
+    g.setColor(Color.BLACK);
   }
 }
