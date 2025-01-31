@@ -12,9 +12,10 @@ public class Grid extends JPanel {
   public Grid(int width, int height) {
     this.width = width;
     this.height = height;
-    this.cellSize = Math.floor((double) width / 10);
+    this.cellSize = 20;
     this.setPreferredSize(new Dimension(width,height));
-    this.setMaximumSize(new Dimension(width,height));
+    this.setLayout(null);
+    this.setFocusable(true);
     this.setBackground(Color.BLACK);
   }
 
