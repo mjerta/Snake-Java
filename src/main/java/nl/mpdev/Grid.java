@@ -10,12 +10,12 @@ public class Grid extends JPanel {
   private int height;
 
   public Grid(int width, int height) {
+    this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = 20;
-    this.setPreferredSize(new Dimension(width,height));
+    this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
-    this.setBackground(Color.BLACK);
   }
 
   @Override
@@ -29,19 +29,16 @@ public class Grid extends JPanel {
     Graphics2D g2d = (Graphics2D) g;
     g2d.setColor(Color.white);
     Path2D.Double path = new Path2D.Double();
-
     // vertical lines
-    for(double x = cellSize; x <= width; x+= cellSize) {
-      path.moveTo(x,0);
-      path.lineTo(x,height);
-      g2d.draw(path);
+    for (double x = cellSize; x <= width; x += cellSize) {
+      path.moveTo(x, 0);
+      path.lineTo(x, height);
     }
-
     // Horizontal lines
-    for(double y = cellSize; y <= height; y+= cellSize) {
-      path.moveTo(0,y);
-      path.lineTo(width,y);
-      g2d.draw(path);
+    for (double y = cellSize; y <= height; y += cellSize) {
+      path.moveTo(0, y);
+      path.lineTo(width, y);
     }
+    g2d.draw(path);
   }
 }
