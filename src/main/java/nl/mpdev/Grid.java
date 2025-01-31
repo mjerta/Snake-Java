@@ -5,9 +5,9 @@ import java.awt.*;
 import java.awt.geom.Path2D;
 
 public class Grid extends JPanel {
-  private double cellSize;
-  private int width;
-  private int height;
+  private final double cellSize;
+  private final int width;
+  private final int height;
 
   public Grid(int width, int height) {
     this.setBackground(Color.BLACK);
