@@ -14,7 +14,6 @@ public class Grid extends JPanel {
     this.height = height;
     this.cellSize = 20;
     this.setPreferredSize(new Dimension(width,height));
-    this.setLayout(null);
     this.setFocusable(true);
     this.setBackground(Color.BLACK);
   }
@@ -38,6 +37,7 @@ public class Grid extends JPanel {
       g2d.draw(path);
     }
 
+    // Horizontal lines
     for(double y = cellSize; y <= height; y+= cellSize) {
       path.moveTo(0,y);
       path.lineTo(width,y);

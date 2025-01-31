@@ -22,11 +22,10 @@ public class GameManager extends JFrame {
 
   }
 
-  public static GameManager getInstance() {
+  public static void getInstance() {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }
-    return INSTANCE;
   }
 
 }
