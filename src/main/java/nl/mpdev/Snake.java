@@ -10,4 +10,12 @@ public class Snake {
   public Snake() {
     this.body = new LinkedList<>();
   }
+
+  public void setBody(List<Segment> body) {
+    this.body = body;
+  }
+  public void move() {}
+  public void grow() {}
+  public void draw() {}
+
 }
