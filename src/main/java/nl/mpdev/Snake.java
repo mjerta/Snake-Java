@@ -27,10 +27,11 @@ public class Snake{
   public void setBody(List<Segment> body) {
     this.body = body;
   }
-  public void move() {
+  public void move(int velocity) {
     if(direction == null) return;
     switch (direction) {
       case LEFT:
+        body.get(0).
         System.out.println("Left");
         break;
       case RIGHT:
