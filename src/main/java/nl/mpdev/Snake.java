@@ -9,6 +9,7 @@ public class Snake {
   private final Random random;
   LinkedList<Segment> body;
   private Direction direction;
+  private Dimension borderDimension;
 
   public Snake() {
     this.body = new LinkedList<>();
@@ -16,7 +17,7 @@ public class Snake {
   }
 
   public void move(int velocity) {
-    if (direction == null) return;
+    if (direction == null || snakeBreakTheBorder()) return;
     // Move the body segments
     for (int i = body.size() - 1; i > 0; i--) {
       body.get(i).setX(body.get(i - 1).getX());
@@ -45,38 +46,47 @@ public class Snake {
   }
 
   public void grow(double cellSize) {
-    if(direction == null) return;
-    Color randomColor = new Color(random.nextInt(256),random.nextInt(256),random.nextInt(256));
-      switch (direction) {
-        case RIGHT:
-          body.add(new Segment(body.getLast().getX() - (int) cellSize, body.getLast().getY(),randomColor));
-          break;
-        case LEFT:
-          body.add(new Segment(body.getLast().getX() + (int) cellSize, body.getLast().getY(),randomColor));
-          break;
-        case UP:
-          body.add(new Segment(body.getLast().getX(), body.getLast().getY() + (int) cellSize,randomColor));
-          break;
-        case DOWN:
-          body.add(new Segment(body.getLast().getX(), body.getLast().getY() - (int) cellSize,randomColor));
-          break;
-      }
+    if (direction == null) return;
+    Color randomColor = new Color(random.nextInt(256), random.nextInt(256), random.nextInt(256));
+    switch (direction) {
+      case RIGHT:
+        body.add(new Segment(body.getLast().getX() - (int) cellSize, body.getLast().getY(), randomColor));
+        break;
+      case LEFT:
+        body.add(new Segment(body.getLast().getX() + (int) cellSize, body.getLast().getY(), randomColor));
+        break;
+      case UP:
+        body.add(new Segment(body.getLast().getX(), body.getLast().getY() + (int) cellSize, randomColor));
+        break;
+      case DOWN:
+        body.add(new Segment(body.getLast().getX(), body.getLast().getY() - (int) cellSize, randomColor));
+        break;
+    }
   }
 
   public void draw(Graphics g, double cellSize) {
-    body.forEach((segment ->  {
+    body.forEach((segment -> {
       g.setColor(segment.getColor());
       g.fillRect(segment.getX(), segment.getY(), (int) cellSize, (int) cellSize);
     }));
 
   }
 
-  public Snake setRandomSnakePosition(int width, int height, double cellSize) {
+  public Snake setRandomSnakePosition(int width, int height, double cellSize, Dimension borderDimension) {
     new Snake();
+    this.borderDimension.setSize(borderDimension);
     int randomX = random.nextInt((int) (width / cellSize)) * (int) cellSize;
     int randomY = random.nextInt((int) (height / cellSize)) * (int) cellSize;
     this.body.add(new Segment(randomX, randomY, Color.RED));
     return this;
+  }
+
+  private boolean snakeBreakTheBorder() {
+    Segment head = body.getFirst();
+    return head.getY() < 0
+      || head.getY() > borderDimension.height
+      || head.getX() < 0
+      || head.getX() > borderDimension.width;
   }
 
   public Direction getDirection() {
