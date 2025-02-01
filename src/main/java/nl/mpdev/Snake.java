@@ -9,7 +9,7 @@ import java.util.Random;
 public class Snake {
 
   List<Segment> body;
-  static Random random;
+  private final Random random;
 
   public Snake() {
     this.body = new LinkedList<>();
