@@ -1,5 +1,6 @@
 package nl.mpdev;
 
+import java.awt.*;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -16,6 +17,11 @@ public class Snake {
   }
   public void move() {}
   public void grow() {}
-  public void draw() {}
+
+
+  public void draw(Graphics g, double cellSize) {
+    g.setColor(Color.GREEN);
+    body.forEach((segment -> g.fillRect(segment.getX(),segment.getY(),(int) cellSize,(int) cellSize)));
+  }
 
 }
