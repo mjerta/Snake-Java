@@ -10,12 +10,12 @@ public class Grid extends JPanel {
   private final int height;
   private Snake snake;
 
-  public Grid(int width, int height, Snake snake) {
+  public Grid(int width, int height,double cellSize , Snake snake) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
-    this.cellSize = 20;
-    this.snake = snake;
+    this.cellSize = cellSize;
+    this.snake = snake.setRandomSnakePosition(width,height,cellSize);
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
   }
@@ -27,6 +27,8 @@ public class Grid extends JPanel {
     drawGrid(g);
     snake.draw(g,cellSize);
   }
+
+
 
   private void drawGrid(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
