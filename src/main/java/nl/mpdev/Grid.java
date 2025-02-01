@@ -25,6 +25,7 @@ public class Grid extends JPanel {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
+    snake.draw(g,cellSize);
   }
 
   private void drawGrid(Graphics g) {
