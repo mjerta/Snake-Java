@@ -14,12 +14,12 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int height;
   private final Snake snake;
 
-  public Grid(int width, int height,double cellSize , Snake snake) {
+  public Grid(int width, int height, double cellSize, Snake snake) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
-    this.snake = snake.setRandomSnakePosition(width,height,cellSize);
+    this.snake = snake.setRandomSnakePosition(width, height, cellSize);
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
@@ -32,10 +32,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
-    snake.draw(g,cellSize);
+    snake.draw(g, cellSize);
   }
-
-
 
   private void drawGrid(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
@@ -63,19 +61,27 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyTyped(KeyEvent e) {
-
+    Direction currentDirection = snake.getDirection();
     switch (e.getKeyChar()) {
-      case  'a':
-        snake.setDirection(Direction.LEFT);
+      case 'a':
+        if (currentDirection != Direction.RIGHT) {
+          snake.setDirection(Direction.LEFT);
+        }
         break;
       case 'd':
-        snake.setDirection(Direction.RIGHT);
+        if (currentDirection != Direction.LEFT) {
+          snake.setDirection(Direction.RIGHT);
+        }
         break;
       case 's':
-        snake.setDirection(Direction.DOWN);
+        if (currentDirection != Direction.UP) {
+          snake.setDirection(Direction.DOWN);
+        }
         break;
       case 'w':
-        snake.setDirection(Direction.UP);
+        if (currentDirection != Direction.DOWN) {
+          snake.setDirection(Direction.UP);
+        }
         break;
       default:
         break;
