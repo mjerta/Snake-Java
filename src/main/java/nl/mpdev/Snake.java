@@ -14,6 +14,7 @@ public class Snake implements KeyListener, ActionListener {
 
   List<Segment> body;
   private final Random random;
+  private Direction direction;
 
   public Snake() {
     this.body = new LinkedList<>();
