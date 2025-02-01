@@ -8,12 +8,14 @@ public class Grid extends JPanel {
   private final double cellSize;
   private final int width;
   private final int height;
+  private Snake snake;
 
-  public Grid(int width, int height) {
+  public Grid(int width, int height, Snake snake) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = 20;
+    this.snake = snake;
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
   }

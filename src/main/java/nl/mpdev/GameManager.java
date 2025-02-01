@@ -14,7 +14,7 @@ public class GameManager extends JFrame {
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
-    this.grid = new Grid(640,640);
+    this.grid = new Grid(640,640, new Snake());
     this.add(grid,BorderLayout.WEST);
     this.pack();
     this.setResizable(false);
