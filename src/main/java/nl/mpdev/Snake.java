@@ -14,7 +14,7 @@ import java.util.Random;
 public class Snake {
 
   private final Random random;
-  List<Segment> body;
+  LinkedList<Segment> body;
   private Direction direction;
 
   public Snake() {
@@ -22,27 +22,34 @@ public class Snake {
     this.random = new Random();
   }
 
-  public void setBody(List<Segment> body) {
+  public void setBody(LinkedList<Segment> body) {
     this.body = body;
   }
 
   public void move(int velocity) {
     if (direction == null) return;
+    // Move the body segments
+    for (int i = body.size() - 1; i > 0; i--) {
+      body.get(i).setX(body.get(i - 1).getX());
+      body.get(i).setY(body.get(i - 1).getY());
+    }
+
+    Segment head = body.getFirst();
     switch (direction) {
       case LEFT:
-        body.get(0).setX(body.get(0).getX() - velocity);
+        head.setX(head.getX() - velocity);
         System.out.println("Left");
         break;
       case RIGHT:
-        body.get(0).setX(body.get(0).getX() + velocity);
+        head.setX(head.getX() + velocity);
         System.out.println("Right");
         break;
       case DOWN:
-        body.get(0).setY(body.get(0).getY() + velocity);
+        head.setY(head.getY() + velocity);
         System.out.println("Down");
         break;
       case UP:
-        body.get(0).setY(body.get(0).getY() - velocity);
+        head.setY(head.getY() - velocity);
         System.out.println("Up");
         break;
     }
@@ -72,7 +79,7 @@ public class Snake {
     new Snake();
     int randomX = random.nextInt((int) (width / cellSize)) * (int) cellSize;
     int randomY = random.nextInt((int) (height / cellSize)) * (int) cellSize;
-    this.setBody(Arrays.asList(new Segment(randomX, randomY)));
+    this.body.add(new Segment(randomX,randomY));
     return this;
   }
 
