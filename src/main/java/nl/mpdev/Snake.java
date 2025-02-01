@@ -56,8 +56,10 @@ public class Snake {
           break;
         case UP:
           body.add(new Segment(body.getLast().getX(), body.getLast().getY() + (int) cellSize,randomColor));
+          break;
         case DOWN:
           body.add(new Segment(body.getLast().getX(), body.getLast().getY() - (int) cellSize,randomColor));
+          break;
       }
   }
 
