@@ -9,11 +9,13 @@ public class Snake {
   private final Random random;
   LinkedList<Segment> body;
   private Direction direction;
-  private Dimension borderDimension;
+  private final Dimension borderDimension;
+
 
   public Snake() {
     this.body = new LinkedList<>();
     this.random = new Random();
+    this.borderDimension =  new Dimension();
   }
 
   public void move(int velocity) {
