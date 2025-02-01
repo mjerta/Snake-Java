@@ -11,12 +11,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class Snake{
+public class Snake {
 
-  List<Segment> body;
   private final Random random;
-
-
+  List<Segment> body;
   private Direction direction;
 
   public Snake() {
@@ -27,8 +25,9 @@ public class Snake{
   public void setBody(List<Segment> body) {
     this.body = body;
   }
+
   public void move(int velocity) {
-    if(direction == null) return;
+    if (direction == null) return;
     switch (direction) {
       case LEFT:
         body.get(0).setX(body.get(0).getX() - velocity);
@@ -48,12 +47,25 @@ public class Snake{
         break;
     }
   }
-  public void grow() {}
 
+  public void grow(double cellSize) {
+    switch (direction) {
+      case RIGHT:
+        body.add(new Segment(body.getLast().getX() - (int) cellSize, body.getLast().getY()));
+        break;
+      case LEFT:
+        body.add(new Segment(body.getLast().getX() + (int) cellSize, body.getLast().getY()));
+        break;
+      case UP:
+        body.add(new Segment(body.getLast().getX(), body.getLast().getY() + (int) cellSize));
+      case DOWN:
+        body.add(new Segment(body.getLast().getX(), body.getLast().getY() - (int) cellSize));
+    }
+  }
 
   public void draw(Graphics g, double cellSize) {
     g.setColor(Color.GREEN);
-    body.forEach((segment -> g.fillRect(segment.getX(),segment.getY(),(int) cellSize,(int) cellSize)));
+    body.forEach((segment -> g.fillRect(segment.getX(), segment.getY(), (int) cellSize, (int) cellSize)));
   }
 
   public Snake setRandomSnakePosition(int width, int height, double cellSize) {
@@ -64,11 +76,11 @@ public class Snake{
     return this;
   }
 
-  public void setDirection(Direction direction) {
-    this.direction = direction;
-  }
-
   public Direction getDirection() {
     return direction;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
   }
 }
