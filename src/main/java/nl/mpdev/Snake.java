@@ -15,10 +15,6 @@ public class Snake {
     this.random = new Random();
   }
 
-  public void setBody(LinkedList<Segment> body) {
-    this.body = body;
-  }
-
   public void move(int velocity) {
     if (direction == null) return;
     // Move the body segments
