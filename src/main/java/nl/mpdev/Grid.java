@@ -12,7 +12,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final double cellSize;
   private final int width;
   private final int height;
-  private Snake snake;
+  private final Snake snake;
 
   public Grid(int width, int height,double cellSize , Snake snake) {
     this.setBackground(Color.BLACK);
@@ -22,6 +22,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.snake = snake.setRandomSnakePosition(width,height,cellSize);
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
+    this.addKeyListener(this);
+    Timer timer = new Timer(100, this);
+    timer.start();
   }
 
   @Override
@@ -53,11 +56,30 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    snake.move();
+    repaint();
 
   }
 
   @Override
   public void keyTyped(KeyEvent e) {
+
+    switch (e.getKeyChar()) {
+      case  'a':
+        snake.setDirection(Direction.LEFT);
+        break;
+      case 'd':
+        snake.setDirection(Direction.RIGHT);
+        break;
+      case 's':
+        snake.setDirection(Direction.DOWN);
+        break;
+      case 'w':
+        snake.setDirection(Direction.UP);
+        break;
+      default:
+        break;
+    }
 
   }
 

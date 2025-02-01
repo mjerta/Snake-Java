@@ -15,6 +15,8 @@ public class Snake{
 
   List<Segment> body;
   private final Random random;
+
+
   private Direction direction;
 
   public Snake() {
@@ -40,5 +42,9 @@ public class Snake{
     int randomY = random.nextInt((int) (height / cellSize)) * (int) cellSize;
     this.setBody(Arrays.asList(new Segment(randomX, randomY)));
     return this;
+  }
+
+  public void setDirection(Direction direction) {
+    this.direction = direction;
   }
 }
