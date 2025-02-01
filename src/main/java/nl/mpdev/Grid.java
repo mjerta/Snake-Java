@@ -82,6 +82,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
           snake.setDirection(Direction.UP);
         }
         break;
+      case 'g':
+        snake.grow(cellSize);
+        break;
       default:
         break;
     }

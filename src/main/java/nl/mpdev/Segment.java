@@ -1,13 +1,17 @@
 package nl.mpdev;
 
+import java.awt.*;
+
 public class Segment {
 
   private int x;
   private int y;
+  private Color color;
 
-  public Segment(int x, int y) {
+  public Segment(int x, int y, Color color) {
     this.x = x;
     this.y = y;
+    this.color = color;
   }
 
   public int getX() {
@@ -24,5 +28,9 @@ public class Segment {
 
   public void setY(int y) {
     this.y = y;
+  }
+
+  public Color getColor() {
+    return color;
   }
 }
