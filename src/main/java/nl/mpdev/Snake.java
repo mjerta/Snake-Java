@@ -27,7 +27,23 @@ public class Snake{
   public void setBody(List<Segment> body) {
     this.body = body;
   }
-  public void move() {}
+  public void move() {
+    if(direction == null) return;
+    switch (direction) {
+      case LEFT:
+        System.out.println("Left");
+        break;
+      case RIGHT:
+        System.out.println("Right");
+        break;
+      case DOWN:
+        System.out.println("Down");
+        break;
+      case UP:
+        System.out.println("Up");
+        break;
+    }
+  }
   public void grow() {}
 
 
