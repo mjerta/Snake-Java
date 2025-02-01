@@ -13,6 +13,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Snake snake;
+  private final Timer timer;
 
   public Grid(int width, int height, double cellSize, Snake snake) {
     this.setBackground(Color.BLACK);
@@ -23,7 +24,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
-    Timer timer = new Timer(100, this);
+    this.timer = new Timer(100, this);
     timer.start();
   }
 
@@ -54,6 +55,11 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    if(!snake.isAlive()){
+      timer.stop();
+      System.out.println("The game has stopped, the snake is dead!");
+      return;
+    }
     snake.move((int) cellSize);
     repaint();
   }

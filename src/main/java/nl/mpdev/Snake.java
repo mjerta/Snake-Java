@@ -10,6 +10,7 @@ public class Snake {
   LinkedList<Segment> body;
   private Direction direction;
   private final Dimension borderDimension;
+  private boolean isAlive = true;
 
 
   public Snake() {
@@ -85,10 +86,11 @@ public class Snake {
 
   private boolean snakeBreakTheBorder() {
     Segment head = body.getFirst();
-    return head.getY() < 0
-      || head.getY() > borderDimension.height
-      || head.getX() < 0
-      || head.getX() > borderDimension.width;
+    if (head.getY() < 0 || head.getY() >= borderDimension.height || head.getX() < 0 || head.getX() >= borderDimension.width) {
+      isAlive = false;
+      return true;
+    }
+    return false;
   }
 
   public Direction getDirection() {
@@ -97,5 +99,9 @@ public class Snake {
 
   public void setDirection(Direction direction) {
     this.direction = direction;
+  }
+
+  public boolean isAlive() {
+    return isAlive;
   }
 }
