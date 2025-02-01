@@ -31,16 +31,19 @@ public class Snake{
     if(direction == null) return;
     switch (direction) {
       case LEFT:
-        body.get(0).
+        body.get(0).setX(body.get(0).getX() - velocity);
         System.out.println("Left");
         break;
       case RIGHT:
+        body.get(0).setX(body.get(0).getX() + velocity);
         System.out.println("Right");
         break;
       case DOWN:
+        body.get(0).setY(body.get(0).getY() + velocity);
         System.out.println("Down");
         break;
       case UP:
+        body.get(0).setY(body.get(0).getY() - velocity);
         System.out.println("Up");
         break;
     }

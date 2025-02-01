@@ -56,7 +56,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    snake.move();
+    snake.move((int) cellSize);
     repaint();
 
   }
