@@ -45,6 +45,7 @@ public class Snake {
   }
 
   public void grow(double cellSize) {
+    if(direction == null) return;
     Color randomColor = new Color(random.nextInt(256),random.nextInt(256),random.nextInt(256));
       switch (direction) {
         case RIGHT:
