@@ -2,9 +2,13 @@ package nl.mpdev;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.geom.Path2D;
 
-public class Grid extends JPanel {
+public class Grid extends JPanel implements ActionListener, KeyListener {
   private final double cellSize;
   private final int width;
   private final int height;
@@ -45,5 +49,25 @@ public class Grid extends JPanel {
       path.lineTo(width, y);
     }
     g2d.draw(path);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+
+  }
+
+  @Override
+  public void keyTyped(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyPressed(KeyEvent e) {
+
+  }
+
+  @Override
+  public void keyReleased(KeyEvent e) {
+
   }
 }

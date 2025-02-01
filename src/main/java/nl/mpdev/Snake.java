@@ -1,5 +1,6 @@
 package nl.mpdev;
 
+import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,7 +11,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-public class Snake implements KeyListener, ActionListener {
+public class Snake{
 
   List<Segment> body;
   private final Random random;
@@ -39,25 +40,5 @@ public class Snake implements KeyListener, ActionListener {
     int randomY = random.nextInt((int) (height / cellSize)) * (int) cellSize;
     this.setBody(Arrays.asList(new Segment(randomX, randomY)));
     return this;
-  }
-
-  @Override
-  public void actionPerformed(ActionEvent e) {
-
-  }
-
-  @Override
-  public void keyTyped(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyPressed(KeyEvent e) {
-
-  }
-
-  @Override
-  public void keyReleased(KeyEvent e) {
-
   }
 }
