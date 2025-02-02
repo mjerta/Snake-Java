@@ -76,7 +76,6 @@ public class Snake {
   }
 
   public Snake setRandomSnakePosition(double cellSize, Dimension borderDimension) {
-    new Snake();
     this.borderDimension.setSize(borderDimension);
     int randomX = random.nextInt((int) (borderDimension.width / cellSize)) * (int) cellSize;
     int randomY = random.nextInt((int) (borderDimension.height / cellSize)) * (int) cellSize;
