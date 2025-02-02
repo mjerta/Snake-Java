@@ -7,20 +7,19 @@ import java.util.Random;
 public class Snake {
 
   private final Random random;
+  private final Dimension borderDimension;
   LinkedList<Segment> body;
   private Direction direction;
-  private final Dimension borderDimension;
   private boolean isAlive = true;
-
 
   public Snake() {
     this.body = new LinkedList<>();
     this.random = new Random();
-    this.borderDimension =  new Dimension();
+    this.borderDimension = new Dimension();
   }
 
   public void move(int velocity) {
-    if (direction == null || snakeBreaksTheBorder()) return;
+    if (direction == null || checkBorderCollision() || checkBodyCollision()) return;
     // Move the body segments
     for (int i = body.size() - 1; i > 0; i--) {
       body.get(i).setX(body.get(i - 1).getX());
@@ -83,7 +82,7 @@ public class Snake {
     return this;
   }
 
-  private boolean snakeBreaksTheBorder() {
+  private boolean checkBorderCollision() {
     Segment head = body.getFirst();
     if (head.getY() < 0 || head.getY() >= borderDimension.height || head.getX() < 0 || head.getX() >= borderDimension.width) {
       isAlive = false;
@@ -95,6 +94,18 @@ public class Snake {
   public boolean checkAppleCollision(Apple apple) {
     Segment head = body.getFirst();
     return head.getX() == apple.getX() && head.getY() == apple.getY();
+  }
+
+  private boolean checkBodyCollision() {
+    Segment head = body.getFirst();
+    boolean headCollide = body.stream()
+      .skip(1) // Skip the head
+      .anyMatch(segment -> segment.getX() == head.getX() && segment.getY() == head.getY());
+    if (headCollide) {
+      isAlive = false;
+      return true;
+    }
+    return false;
   }
 
   public Direction getDirection() {
