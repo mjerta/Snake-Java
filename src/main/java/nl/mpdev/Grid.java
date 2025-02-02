@@ -20,7 +20,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
-    this.snake = snake.setRandomSnakePosition(width, height, cellSize,new Dimension(width,height));
+    this.snake = snake.setRandomSnakePosition(cellSize,new Dimension(width,height));
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);

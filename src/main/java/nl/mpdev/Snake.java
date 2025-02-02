@@ -75,11 +75,11 @@ public class Snake {
 
   }
 
-  public Snake setRandomSnakePosition(int width, int height, double cellSize, Dimension borderDimension) {
+  public Snake setRandomSnakePosition(double cellSize, Dimension borderDimension) {
     new Snake();
     this.borderDimension.setSize(borderDimension);
-    int randomX = random.nextInt((int) (width / cellSize)) * (int) cellSize;
-    int randomY = random.nextInt((int) (height / cellSize)) * (int) cellSize;
+    int randomX = random.nextInt((int) (borderDimension.width / cellSize)) * (int) cellSize;
+    int randomY = random.nextInt((int) (borderDimension.height / cellSize)) * (int) cellSize;
     this.body.add(new Segment(randomX, randomY, Color.RED));
     return this;
   }
