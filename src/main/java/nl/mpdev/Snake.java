@@ -4,8 +4,7 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Snake {
-
+public class Snake implements GridComponent{
   private final Random random;
   private final Dimension borderDimension;
   LinkedList<Segment> body;
@@ -66,6 +65,7 @@ public class Snake {
     }
   }
 
+  @Override
   public void draw(Graphics g, double cellSize) {
     body.stream()
       .skip(1)
