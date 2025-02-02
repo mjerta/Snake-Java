@@ -20,9 +20,7 @@ public class GameManager extends JFrame {
     // Setup dimension for grid panel
 
 
-    // SETUP SNAKE WITH INITIAL SEGMENT
-    Snake snake = new Snake();
-    Apple apple = new Apple();
+    // SETUP GRID PANEL
     this.grid = new Grid(640,640,20);
     this.add(grid,BorderLayout.WEST);
     this.pack();
