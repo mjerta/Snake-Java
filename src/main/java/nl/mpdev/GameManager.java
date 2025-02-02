@@ -23,7 +23,7 @@ public class GameManager extends JFrame {
     // SETUP SNAKE WITH INITIAL SEGMENT
     Snake snake = new Snake();
     Apple apple = new Apple();
-    this.grid = new Grid(640,640,20,new GridComponentFactory());
+    this.grid = new Grid(640,640,20);
     this.add(grid,BorderLayout.WEST);
     this.pack();
     this.setResizable(false);

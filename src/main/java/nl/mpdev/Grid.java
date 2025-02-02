@@ -1,5 +1,7 @@
 package nl.mpdev;
 
+import nl.mpdev.factories.GridComponentFactory;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -16,13 +18,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Apple apple;
   private final Timer timer;
 
-  public Grid(int width, int height, double cellSize, Snake snake, Apple apple) {
+  public Grid(int width, int height, double cellSize) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
-    this.snake = snake.setRandomSnakePosition(cellSize,new Dimension(width,height));
-    this.apple= apple.setInitialPosition(cellSize, new Dimension(width,height));
+    this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
+    this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
@@ -36,7 +38,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.setColor(Color.BLACK);
     drawGrid(g);
     snake.draw(g, cellSize);
-    apple.draw(g,cellSize);
+    apple.draw(g, cellSize);
   }
 
   private void drawGrid(Graphics g) {
@@ -58,13 +60,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    if(!snake.isAlive()){
+    if (!snake.isAlive()) {
       timer.stop();
       System.out.println("The game has stopped, the snake is dead!");
       return;
     }
     snake.move((int) cellSize);
-    if(snake.checkAppleCollision(apple)) {
+    if (snake.checkAppleCollision(apple)) {
       snake.grow(cellSize);
       apple.respawn();
     }
