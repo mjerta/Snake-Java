@@ -3,7 +3,7 @@ package nl.mpdev;
 import java.awt.*;
 import java.util.Random;
 
-public class Apple {
+public class Apple implements GridComponent {
 
   private final Random random;
   private int x;
@@ -22,6 +22,7 @@ public class Apple {
 
   }
 
+  @Override
   public void draw(Graphics g, double cellsize) {
     g.setColor(Color.RED);
     g.fillOval(x, y, (int) cellsize, (int) cellsize);
