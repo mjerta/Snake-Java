@@ -10,7 +10,7 @@ public class Apple {
   private int x;
   private int y;
 
-  private Apple() {
+  public Apple() {
     this.random = new Random();
   }
 
