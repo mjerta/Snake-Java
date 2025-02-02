@@ -1,11 +1,9 @@
 package nl.mpdev;
 
+import nl.mpdev.factories.GridComponentFactory;
+
 import javax.swing.*;
 import java.awt.*;
-
-import java.awt.List.*;
-import java.util.Arrays;
-import java.util.Random;
 
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
@@ -25,7 +23,7 @@ public class GameManager extends JFrame {
     // SETUP SNAKE WITH INITIAL SEGMENT
     Snake snake = new Snake();
     Apple apple = new Apple();
-    this.grid = new Grid(640,640,20, snake,apple);
+    this.grid = new Grid(640,640,20,new GridComponentFactory());
     this.add(grid,BorderLayout.WEST);
     this.pack();
     this.setResizable(false);
