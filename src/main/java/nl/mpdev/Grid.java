@@ -66,6 +66,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     snake.move((int) cellSize);
     if(snake.checkAppleCollision(apple)) {
       snake.grow(cellSize);
+      apple.respawn();
     }
     repaint();
   }
