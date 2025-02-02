@@ -22,7 +22,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.height = height;
     this.cellSize = cellSize;
     this.snake = snake.setRandomSnakePosition(cellSize,new Dimension(width,height));
-    this.apple= apple.setRandomApplePosition(cellSize, new Dimension());
+    this.apple= apple.setInitialPosition(cellSize, new Dimension(width,height));
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
@@ -36,6 +36,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.setColor(Color.BLACK);
     drawGrid(g);
     snake.draw(g, cellSize);
+    apple.draw(g,cellSize);
   }
 
   private void drawGrid(Graphics g) {
