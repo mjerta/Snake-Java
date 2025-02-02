@@ -1,7 +1,7 @@
 package nl.mpdev.factories;
 
-import nl.mpdev.Apple;
-import nl.mpdev.Snake;
+import nl.mpdev.components.Apple;
+import nl.mpdev.components.Snake;
 import java.awt.*;
 
 public class GridComponentFactory {

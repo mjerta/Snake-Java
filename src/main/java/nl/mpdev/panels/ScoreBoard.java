@@ -1,4 +1,4 @@
-package nl.mpdev;
+package nl.mpdev.panels;
 
 public class ScoreBoard {
 }

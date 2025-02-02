@@ -1,5 +1,8 @@
-package nl.mpdev;
+package nl.mpdev.panels;
 
+import nl.mpdev.components.Apple;
+import nl.mpdev.components.Snake;
+import nl.mpdev.enums.Direction;
 import nl.mpdev.factories.GridComponentFactory;
 
 import javax.swing.*;

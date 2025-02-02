@@ -1,6 +1,9 @@
 package nl.mpdev;
 
-import nl.mpdev.factories.GridComponentFactory;
+import nl.mpdev.components.Apple;
+import nl.mpdev.components.Snake;
+import nl.mpdev.panels.Grid;
+import nl.mpdev.panels.ScoreBoard;
 
 import javax.swing.*;
 import java.awt.*;

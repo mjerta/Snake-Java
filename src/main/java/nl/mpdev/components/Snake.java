@@ -1,10 +1,12 @@
-package nl.mpdev;
+package nl.mpdev.components;
+
+import nl.mpdev.enums.Direction;
 
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Snake implements GridComponent{
+public class Snake implements GridComponent {
   private final Random random;
   private final Dimension borderDimension;
   LinkedList<Segment> body;
