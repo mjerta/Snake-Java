@@ -20,7 +20,7 @@ public class Snake {
   }
 
   public void move(int velocity) {
-    if (direction == null || snakeBreakTheBorder()) return;
+    if (direction == null || snakeBreaksTheBorder()) return;
     // Move the body segments
     for (int i = body.size() - 1; i > 0; i--) {
       body.get(i).setX(body.get(i - 1).getX());
@@ -83,13 +83,18 @@ public class Snake {
     return this;
   }
 
-  private boolean snakeBreakTheBorder() {
+  private boolean snakeBreaksTheBorder() {
     Segment head = body.getFirst();
     if (head.getY() < 0 || head.getY() >= borderDimension.height || head.getX() < 0 || head.getX() >= borderDimension.width) {
       isAlive = false;
       return true;
     }
     return false;
+  }
+
+  public boolean checkAppleCollision(Apple apple) {
+    Segment head = body.getFirst();
+    return head.getX() == apple.getX() && head.getY() == apple.getY();
   }
 
   public Direction getDirection() {

@@ -34,4 +34,11 @@ public class Apple {
     return this;
   }
 
+  public int getX() {
+    return x;
+  }
+
+  public int getY() {
+    return y;
+  }
 }
