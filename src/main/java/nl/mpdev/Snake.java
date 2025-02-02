@@ -67,11 +67,15 @@ public class Snake {
   }
 
   public void draw(Graphics g, double cellSize) {
-    body.forEach((segment -> {
-      g.setColor(segment.getColor());
-      g.fillRect(segment.getX(), segment.getY(), (int) cellSize, (int) cellSize);
-    }));
-
+    body.stream()
+      .skip(1)
+      .forEach((segment -> {
+        g.setColor(segment.getColor());
+        g.fillRect(segment.getX(), segment.getY(), (int) cellSize, (int) cellSize);
+      }));
+    Segment head = body.getFirst();
+    g.setColor(head.getColor());
+    g.fillRect(head.getX(), head.getY(), (int) cellSize, (int) cellSize);
   }
 
   public Snake setRandomSnakePosition(double cellSize, Dimension borderDimension) {
