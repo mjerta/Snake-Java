@@ -1,6 +1,5 @@
 package nl.mpdev.panels;
 
-import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 import nl.mpdev.components.Apple;
 import nl.mpdev.components.Ladder;
@@ -23,6 +22,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Snake snake;
   private final Timer timer;
   private final int scoreToWin;
+  private final int initialSpeed;
   private Apple apple;
   private Ladder ladder;
 
@@ -37,7 +37,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
-    this.timer = new Timer(100, this);
+    this.initialSpeed = 100;
+    this.timer = new Timer(initialSpeed, this);
     timer.start();
   }
 
@@ -94,7 +95,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
-    if(scoreToWin > 0) {
+    if (scoreToWin > 0) {
       Player.reset();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.updateScore();
@@ -165,7 +166,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-
+    if (e.getKeyCode() == KeyEvent.VK_SPACE) timer.setDelay(50);
   }
 
   @Override
@@ -189,6 +190,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         break;
       case 27:
         System.exit(0);
+        break;
+      case 32:
+        timer.setDelay(100);
         break;
       default:
         break;
