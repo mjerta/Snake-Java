@@ -15,12 +15,12 @@ public class GameManager extends JFrame {
   private Apple apple;
   private ScoreBoard scoreBoard;
   private Timer timer;
+  private Player player;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
-
-    // Setup dimension for grid panel
+    this.player = new Player("Player 1");
 
 
     // SETUP GRID PANEL

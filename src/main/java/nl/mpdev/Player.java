@@ -2,11 +2,10 @@ package nl.mpdev;
 
 public class Player {
   private final String name;
-  private int score;
+  private int score = 0;
 
-  public Player(String name, int score) {
+  public Player(String name) {
     this.name = name;
-    this.score = score;
   }
 
   public void increaseScore() {
