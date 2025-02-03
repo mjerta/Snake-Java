@@ -59,12 +59,12 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g2d.setColor(Color.white);
     Path2D.Double path = new Path2D.Double();
     // vertical lines
-    for (double x = cellSize; x <= width; x += cellSize) {
+    for (double x = 0; x < width; x += cellSize) {
       path.moveTo(x, 0);
       path.lineTo(x, height);
     }
     // Horizontal lines
-    for (double y = cellSize; y <= height; y += cellSize) {
+    for (double y = cellSize; y < height; y += cellSize) {
       path.moveTo(0, y);
       path.lineTo(width, y);
     }
