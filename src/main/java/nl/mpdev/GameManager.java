@@ -24,7 +24,7 @@ public class GameManager extends JFrame {
 
 
     // SETUP GRID PANEL
-    this.grid = new Grid(640,640,20, 30);
+    this.grid = new Grid(640,640,20, 150);
     this.add(grid,BorderLayout.WEST);
     this.pack();
     this.setResizable(false);
