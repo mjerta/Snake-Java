@@ -23,4 +23,8 @@ public class ScoreBoard extends JPanel {
     super.paintComponent(g);
     drawScore(g);
   }
+
+  public void updateScore() {
+    repaint();
+  }
 }

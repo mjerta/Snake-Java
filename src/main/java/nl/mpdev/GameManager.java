@@ -22,9 +22,9 @@ public class GameManager extends JFrame {
     player = new Player("Player 1");
 
 
-    // SETUP GRID PANEL
+    // SETUP PANELS
     Grid grid = new Grid(640, 640, 20, 150);
-    ScoreBoard scoreBoard = new ScoreBoard(200, 640);
+    scoreBoard = new ScoreBoard(200, 640);
     this.add(grid,BorderLayout.WEST);
     this.add(scoreBoard,BorderLayout.EAST);
     this.pack();

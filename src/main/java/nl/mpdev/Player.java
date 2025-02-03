@@ -1,5 +1,7 @@
 package nl.mpdev;
 
+import nl.mpdev.panels.ScoreBoard;
+
 public class Player {
   private final String name;
   private int score = 0;
@@ -10,6 +12,8 @@ public class Player {
 
   public void increaseScore() {
     score += 30;
+    ScoreBoard scoreBoard = GameManager.getScoreBoard();
+    scoreBoard.updateScore();
   }
 
   public String getName() {
