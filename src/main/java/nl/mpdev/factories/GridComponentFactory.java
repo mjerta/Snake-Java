@@ -1,6 +1,7 @@
 package nl.mpdev.factories;
 
 import nl.mpdev.components.Apple;
+import nl.mpdev.components.Ladder;
 import nl.mpdev.components.Snake;
 import java.awt.*;
 
@@ -16,5 +17,11 @@ public class GridComponentFactory {
     Apple apple = new Apple();
     apple.setInitialPosition(cellSize, borderDimension);
     return apple;
+  }
+
+  public static Ladder createLadder(double cellSize, Dimension borderDimension) {
+    Ladder ladder = new Ladder();
+    ladder.setInitialPosition(cellSize, borderDimension);
+    return ladder;
   }
 }

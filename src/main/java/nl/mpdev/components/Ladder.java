@@ -14,7 +14,7 @@ public class Ladder implements GridComponent {
     this.random = new Random();
   }
 
-  public void setPosition(double cellSize, Dimension borderDimension) {
+  public void setInitialPosition(double cellSize, Dimension borderDimension) {
     this.cellSize = cellSize;
     this.borderDimension = borderDimension;
     this.x = random.nextInt((int) (borderDimension.width / cellSize)) * (int) cellSize;
