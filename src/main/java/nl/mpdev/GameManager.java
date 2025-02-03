@@ -1,6 +1,9 @@
 package nl.mpdev;
 
-import nl.mpdev.factories.GridComponentFactory;
+import nl.mpdev.components.Apple;
+import nl.mpdev.components.Snake;
+import nl.mpdev.panels.Grid;
+import nl.mpdev.panels.ScoreBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -12,16 +15,16 @@ public class GameManager extends JFrame {
   private Apple apple;
   private ScoreBoard scoreBoard;
   private Timer timer;
+  private static Player player;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
-
-    // Setup dimension for grid panel
+    player = new Player("Player 1");
 
 
     // SETUP GRID PANEL
-    this.grid = new Grid(640,640,20);
+    this.grid = new Grid(640,640,20, 150);
     this.add(grid,BorderLayout.WEST);
     this.pack();
     this.setResizable(false);
@@ -32,6 +35,9 @@ public class GameManager extends JFrame {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }
+  }
+  public static Player getPlayer() {
+    return player;
   }
 
 }

@@ -1,4 +1,4 @@
-package nl.mpdev;
+package nl.mpdev.components;
 
 import java.awt.*;
 import java.util.Random;

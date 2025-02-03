@@ -1,5 +1,10 @@
-package nl.mpdev;
+package nl.mpdev.panels;
 
+import nl.mpdev.GameManager;
+import nl.mpdev.components.Apple;
+import nl.mpdev.components.Ladder;
+import nl.mpdev.components.Snake;
+import nl.mpdev.enums.Direction;
 import nl.mpdev.factories.GridComponentFactory;
 
 import javax.swing.*;
@@ -15,14 +20,17 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Snake snake;
-  private final Apple apple;
   private final Timer timer;
+  private final int scoreToWin;
+  private Apple apple;
+  private Ladder ladder;
 
-  public Grid(int width, int height, double cellSize) {
+  public Grid(int width, int height, double cellSize, int scoreToWin) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
+    this.scoreToWin = scoreToWin;
     this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     this.setPreferredSize(new Dimension(width, height));
@@ -38,7 +46,12 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.setColor(Color.BLACK);
     drawGrid(g);
     snake.draw(g, cellSize);
-    apple.draw(g, cellSize);
+    if (apple != null) {
+      apple.draw(g, cellSize);
+    }
+    if (ladder != null) {
+      ladder.draw(g, cellSize);
+    }
   }
 
   private void drawGrid(Graphics g) {
@@ -61,16 +74,42 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (!snake.isAlive()) {
-      timer.stop();
-      System.out.println("The game has stopped, the snake is dead!");
+      handleSnakeDeath();
       return;
     }
     snake.move((int) cellSize);
-    if (snake.checkAppleCollision(apple)) {
-      snake.grow(cellSize);
+    if (ladder == null && snake.checkAppleCollision(apple)) {
+      handleAppleCollision();
+    }
+    hasPlayerWon();
+    repaint();
+  }
+
+  private void handleSnakeDeath() {
+    timer.stop();
+    System.out.println("The game has stopped, the snake is dead!");
+  }
+
+  private void handleAppleCollision() {
+    snake.grow(cellSize);
+    GameManager.getPlayer().increaseScore();
+    if (GameManager.getPlayer().getScore() >= scoreToWin) {
+      this.apple = null;
+      this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
+    }
+    else {
+      System.out.println(GameManager.getPlayer().getScore()); // log out score in console
       apple.respawn();
     }
-    repaint();
+  }
+
+
+
+  private void hasPlayerWon() {
+    if (ladder != null && snake.checkLadderCollision(ladder)) {
+      timer.stop();
+      System.out.println("Congratulations! You have won the game!");
+    }
   }
 
   @Override

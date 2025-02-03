@@ -1,10 +1,12 @@
-package nl.mpdev;
+package nl.mpdev.components;
+
+import nl.mpdev.enums.Direction;
 
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Snake implements GridComponent{
+public class Snake implements GridComponent {
   private final Random random;
   private final Dimension borderDimension;
   LinkedList<Segment> body;
@@ -111,6 +113,10 @@ public class Snake implements GridComponent{
     }
     return false;
   }
+  public boolean checkLadderCollision(Ladder ladder) {
+    Segment head = body.getFirst();
+    return head.getX() == ladder.getX() && head.getY() == ladder.getY();
+  }
 
   public Direction getDirection() {
     return direction;
@@ -123,4 +129,5 @@ public class Snake implements GridComponent{
   public boolean isAlive() {
     return isAlive;
   }
+
 }
