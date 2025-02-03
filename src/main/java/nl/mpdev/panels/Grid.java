@@ -27,7 +27,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private Ladder ladder;
 
   public Grid(int width, int height, double cellSize, int scoreToWin) {
-    this.setBackground(Color.BLACK);
+    this.setBackground(Color.CYAN);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
@@ -184,6 +184,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         break;
       case 10:
         reset();
+        break;
+      case 27:
+        System.exit(0);
         break;
       default:
         break;
