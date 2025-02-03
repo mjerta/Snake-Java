@@ -21,12 +21,14 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Snake snake;
   private final Apple apple;
   private final Timer timer;
+  private final int scoreToWin;
 
-  public Grid(int width, int height, double cellSize) {
+  public Grid(int width, int height, double cellSize, int scoreToWin) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
+    this.scoreToWin = scoreToWin;
     this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     this.setPreferredSize(new Dimension(width, height));
