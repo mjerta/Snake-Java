@@ -22,9 +22,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int height;
   private final Snake snake;
   private final Apple apple;
-  private final Ladder ladder;
   private final Timer timer;
   private final int scoreToWin;
+  private Ladder ladder;
 
   public Grid(int width, int height, double cellSize, int scoreToWin) {
     this.setBackground(Color.BLACK);
@@ -34,7 +34,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.scoreToWin = scoreToWin;
     this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
-    this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height)) ;
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
@@ -49,8 +48,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     drawGrid(g);
     snake.draw(g, cellSize);
     apple.draw(g, cellSize);
-    if(ladder != null){
-    ladder.draw(g,cellSize);
+    if (ladder != null) {
+      ladder.draw(g, cellSize);
     }
   }
 
@@ -82,14 +81,20 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     if (snake.checkAppleCollision(apple)) {
       snake.grow(cellSize);
       GameManager.getPlayer().increaseScore();
+      if (GameManager.getPlayer().getScore() > scoreToWin) {
+        this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
+      }
       System.out.println(GameManager.getPlayer().getScore()); // log out score in console
       apple.respawn();
+    }
+    if (snake.checkLadderCollision(ladder)) {
+      hasPlayerWon();
     }
     repaint();
   }
 
   private void hasPlayerWon() {
-    if(ladder != null && snake.checkLadderCollision(ladder)) {
+    if (ladder != null && snake.checkLadderCollision(ladder)) {
       timer.stop();
       System.out.println("Congratulations! You have won the game!");
     }
