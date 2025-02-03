@@ -12,7 +12,7 @@ public class GameManager extends JFrame {
   private static GameManager INSTANCE;
   private Snake snake;
   private Apple apple;
-  private ScoreBoard scoreBoard;
+  private static ScoreBoard scoreBoard;
   private Timer timer;
   private static Player player;
 
@@ -39,6 +39,10 @@ public class GameManager extends JFrame {
   }
   public static Player getPlayer() {
     return player;
+  }
+
+  public static ScoreBoard getScoreBoard() {
+    return scoreBoard;
   }
 
 }
