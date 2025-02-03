@@ -27,7 +27,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private Ladder ladder;
 
   public Grid(int width, int height, double cellSize, int scoreToWin) {
-    this.setBackground(Color.CYAN);
+    this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
@@ -57,7 +57,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   private void drawGrid(Graphics g) {
     Graphics2D g2d = (Graphics2D) g;
-    g2d.setColor(Color.white);
+    g2d.setColor(Color.lightGray);
     Path2D.Double path = new Path2D.Double();
     // vertical lines
     for (double x = 0; x < width; x += cellSize) {
