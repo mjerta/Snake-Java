@@ -21,9 +21,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Snake snake;
-  private final Apple apple;
   private final Timer timer;
   private final int scoreToWin;
+  private Apple apple;
   private Ladder ladder;
 
   public Grid(int width, int height, double cellSize, int scoreToWin) {
@@ -47,7 +47,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.setColor(Color.BLACK);
     drawGrid(g);
     snake.draw(g, cellSize);
-    apple.draw(g, cellSize);
+    if (apple != null) {
+      apple.draw(g, cellSize);
+    }
     if (ladder != null) {
       ladder.draw(g, cellSize);
     }
@@ -78,18 +80,19 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       return;
     }
     snake.move((int) cellSize);
-    if (snake.checkAppleCollision(apple)) {
+    if (ladder == null && snake.checkAppleCollision(apple)) {
       snake.grow(cellSize);
       GameManager.getPlayer().increaseScore();
-      if (GameManager.getPlayer().getScore() > scoreToWin) {
+      if (GameManager.getPlayer().getScore() >= scoreToWin) {
+        this.apple = null;
         this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
       }
-      System.out.println(GameManager.getPlayer().getScore()); // log out score in console
-      apple.respawn();
+      else {
+        System.out.println(GameManager.getPlayer().getScore()); // log out score in console
+        apple.respawn();
+      }
     }
-    if (snake.checkLadderCollision(ladder)) {
-      hasPlayerWon();
-    }
+    hasPlayerWon();
     repaint();
   }
 
