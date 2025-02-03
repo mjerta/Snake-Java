@@ -2,7 +2,6 @@ package nl.mpdev.panels;
 
 import nl.mpdev.GameManager;
 import nl.mpdev.components.Apple;
-import nl.mpdev.components.GridComponent;
 import nl.mpdev.components.Ladder;
 import nl.mpdev.components.Snake;
 import nl.mpdev.enums.Direction;
@@ -75,26 +74,36 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   @Override
   public void actionPerformed(ActionEvent e) {
     if (!snake.isAlive()) {
-      timer.stop();
-      System.out.println("The game has stopped, the snake is dead!");
+      handleSnakeDeath();
       return;
     }
     snake.move((int) cellSize);
     if (ladder == null && snake.checkAppleCollision(apple)) {
-      snake.grow(cellSize);
-      GameManager.getPlayer().increaseScore();
-      if (GameManager.getPlayer().getScore() >= scoreToWin) {
-        this.apple = null;
-        this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
-      }
-      else {
-        System.out.println(GameManager.getPlayer().getScore()); // log out score in console
-        apple.respawn();
-      }
+      handleAppleCollision();
     }
     hasPlayerWon();
     repaint();
   }
+
+  private void handleSnakeDeath() {
+    timer.stop();
+    System.out.println("The game has stopped, the snake is dead!");
+  }
+
+  private void handleAppleCollision() {
+    snake.grow(cellSize);
+    GameManager.getPlayer().increaseScore();
+    if (GameManager.getPlayer().getScore() >= scoreToWin) {
+      this.apple = null;
+      this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
+    }
+    else {
+      System.out.println(GameManager.getPlayer().getScore()); // log out score in console
+      apple.respawn();
+    }
+  }
+
+
 
   private void hasPlayerWon() {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
