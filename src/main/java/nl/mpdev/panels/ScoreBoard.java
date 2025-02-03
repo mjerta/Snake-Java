@@ -1,4 +1,12 @@
 package nl.mpdev.panels;
 
-public class ScoreBoard {
+import javax.swing.*;
+import java.awt.*;
+
+public class ScoreBoard extends JPanel {
+
+  public ScoreBoard(int width,int height) {
+    this.setBackground(Color.BLACK);
+    this.setPreferredSize(new Dimension(width, height));
+  }
 }
