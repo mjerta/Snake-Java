@@ -11,7 +11,6 @@ import java.awt.*;
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
   private Snake snake;
-  private Grid grid;
   private Apple apple;
   private ScoreBoard scoreBoard;
   private Timer timer;
@@ -24,8 +23,10 @@ public class GameManager extends JFrame {
 
 
     // SETUP GRID PANEL
-    this.grid = new Grid(640,640,20, 150);
+    Grid grid = new Grid(640, 640, 20, 150);
+    ScoreBoard scoreBoard = new ScoreBoard(200, 640);
     this.add(grid,BorderLayout.WEST);
+    this.add(scoreBoard,BorderLayout.EAST);
     this.pack();
     this.setResizable(false);
     this.setVisible(true);
