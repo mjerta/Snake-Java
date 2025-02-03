@@ -26,7 +26,17 @@ public class ScoreBoard extends JPanel {
   private void drawScore(Graphics g) {
     g.setColor(Color.WHITE);
     g.setFont(new Font("Arial", Font.PLAIN, 20));
-    g.drawString("Score: " + Player.getInstance().getScore(), 10, 20);
+    g.drawString("Player: " + Player.getInstance().getName(), 20, 40);
+    g.drawString("Score: " + Player.getInstance().getScore(), 20, 80);
+  }
+
+  public void addVictoryMessage() {
+    Graphics g = this.getGraphics();
+    g.setColor(Color.WHITE);
+    g.setFont(new Font("Arial", Font.PLAIN, 20));
+    g.drawString("You won!", 20, 120);
+    g.setFont(new Font("Arial", Font.PLAIN, 13));
+    g.drawString("Press enter for another round", 20, 160);
   }
 
   @Override

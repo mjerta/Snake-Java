@@ -124,6 +124,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private void hasPlayerWon() {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
       timer.stop();
+      ScoreBoard scoreBoard = ScoreBoard.getInstance();
+      scoreBoard.addVictoryMessage();
       System.out.println("Congratulations! You have won the game!");
     }
   }
