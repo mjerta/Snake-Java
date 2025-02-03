@@ -1,16 +1,25 @@
 package nl.mpdev.panels;
 
-import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class ScoreBoard extends JPanel {
+  private static ScoreBoard INSTANCE;
 
-  public ScoreBoard(int width,int height) {
+  private ScoreBoard() {
+    int width = 200;
+    int height = 640;
     this.setBackground(Color.BLACK);
     this.setPreferredSize(new Dimension(width, height));
+  }
+
+  public static ScoreBoard getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new ScoreBoard();
+    }
+    return INSTANCE;
   }
 
   private void drawScore(Graphics g) {

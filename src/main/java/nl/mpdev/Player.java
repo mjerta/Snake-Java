@@ -22,7 +22,7 @@ public class Player {
 
   public void increaseScore() {
     score += 30;
-    ScoreBoard scoreBoard = GameManager.getScoreBoard();
+    ScoreBoard scoreBoard = ScoreBoard.getInstance();
     scoreBoard.updateScore();
   }
 
