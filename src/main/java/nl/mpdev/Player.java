@@ -1,19 +1,11 @@
 package nl.mpdev;
 
 public class Player {
-  private static Player instance;
   private final String name;
   private int score = 0;
 
-  private Player(String name) {
+  public Player(String name) {
     this.name = name;
-  }
-
-  public static Player getInstance(String playersName){
-    if(instance == null){
-      instance = new Player(playersName);
-    }
-    return instance;
   }
 
   public void increaseScore() {
