@@ -13,6 +13,7 @@ public class ScoreBoard extends JPanel {
     int height = 640;
     this.setBackground(Color.BLACK);
     this.setPreferredSize(new Dimension(width, height));
+    this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
   }
 
   public static ScoreBoard getInstance() {

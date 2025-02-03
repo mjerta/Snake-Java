@@ -86,6 +86,18 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     repaint();
   }
 
+  public void reset() {
+    snake.reset(cellSize);
+    if (apple != null) {
+      apple.respawn();
+    }
+    else {
+      apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
+    }
+    ladder = null;
+    timer.start();
+  }
+
   private void handleSnakeDeath() {
     timer.stop();
     System.out.println("The game has stopped, the snake is dead!");
@@ -103,8 +115,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       apple.respawn();
     }
   }
-
-
 
   private void hasPlayerWon() {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
@@ -149,12 +159,12 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   @Override
   public void keyPressed(KeyEvent e) {
 
-
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
-    switch(e.getKeyCode()) {
+    System.out.println(e.getKeyCode());
+    switch (e.getKeyCode()) {
       case KeyEvent.VK_LEFT:
         snake.setDirection(Direction.LEFT);
         break;
@@ -166,6 +176,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         break;
       case KeyEvent.VK_UP:
         snake.setDirection(Direction.UP);
+        break;
+      case 10:
+        reset();
         break;
       default:
         break;

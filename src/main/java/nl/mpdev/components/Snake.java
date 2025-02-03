@@ -5,6 +5,7 @@ import nl.mpdev.enums.Direction;
 import java.awt.*;
 import java.util.LinkedList;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 public class Snake implements GridComponent {
   private final Random random;
@@ -67,6 +68,13 @@ public class Snake implements GridComponent {
     }
   }
 
+  public void reset(double cellSize) {
+    body = body.stream().limit(1).collect(Collectors.toCollection(LinkedList::new));
+    this.setRandomSnakePosition(cellSize, borderDimension);
+    direction = null;
+    isAlive = true;
+  }
+
   @Override
   public void draw(Graphics g, double cellSize) {
     body.stream()
@@ -80,12 +88,18 @@ public class Snake implements GridComponent {
     g.fillRect(head.getX(), head.getY(), (int) cellSize, (int) cellSize);
   }
 
-  public Snake setRandomSnakePosition(double cellSize, Dimension borderDimension) {
+
+  public void setRandomSnakePosition(double cellSize, Dimension borderDimension) {
     this.borderDimension.setSize(borderDimension);
     int randomX = random.nextInt((int) (borderDimension.width / cellSize)) * (int) cellSize;
     int randomY = random.nextInt((int) (borderDimension.height / cellSize)) * (int) cellSize;
-    this.body.add(new Segment(randomX, randomY, Color.RED));
-    return this;
+    if(!body.isEmpty()) {
+      body.getFirst().setX(randomX);
+      body.getFirst().setY(randomY);
+    }
+    else {
+      this.body.add(new Segment(randomX, randomY, Color.RED));
+    }
   }
 
   private boolean checkBorderCollision() {
@@ -113,6 +127,7 @@ public class Snake implements GridComponent {
     }
     return false;
   }
+
   public boolean checkLadderCollision(Ladder ladder) {
     Segment head = body.getFirst();
     return head.getX() == ladder.getX() && head.getY() == ladder.getY();
