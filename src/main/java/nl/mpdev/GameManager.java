@@ -14,17 +14,16 @@ public class GameManager extends JFrame {
   private Apple apple;
   private static ScoreBoard scoreBoard;
   private Timer timer;
-  private static Player player;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
-    player = new Player("Player 1");
 
 
     // SETUP PANELS
     Grid grid = new Grid(640, 640, 20, 150);
     scoreBoard = new ScoreBoard(200, 640);
+    scoreBoard = new ScoreBoard(100, 640);
     this.add(grid,BorderLayout.WEST);
     this.add(scoreBoard,BorderLayout.EAST);
     this.pack();
@@ -36,9 +35,6 @@ public class GameManager extends JFrame {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }
-  }
-  public static Player getPlayer() {
-    return player;
   }
 
   public static ScoreBoard getScoreBoard() {

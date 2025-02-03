@@ -1,6 +1,7 @@
 package nl.mpdev.panels;
 
 import nl.mpdev.GameManager;
+import nl.mpdev.Player;
 import nl.mpdev.components.Apple;
 import nl.mpdev.components.Ladder;
 import nl.mpdev.components.Snake;
@@ -92,13 +93,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   private void handleAppleCollision() {
     snake.grow(cellSize);
-    GameManager.getPlayer().increaseScore();
-    if (GameManager.getPlayer().getScore() >= scoreToWin) {
+    Player.getInstance().increaseScore();
+    if (Player.getInstance().getScore() >= scoreToWin) {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
     }
     else {
-      System.out.println(GameManager.getPlayer().getScore()); // log out score in console
+      System.out.println(Player.getInstance().getScore()); // log out score in console
       apple.respawn();
     }
   }
