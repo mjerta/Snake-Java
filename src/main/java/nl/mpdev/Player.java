@@ -1,15 +1,33 @@
 package nl.mpdev;
 
+import nl.mpdev.panels.ScoreBoard;
+
 public class Player {
   private final String name;
   private int score = 0;
+  private static Player INSTANCE;
 
-  public Player(String name) {
+  private Player(String name) {
     this.name = name;
   }
 
+  public static Player getInstance() {
+    if (INSTANCE == null) {
+      INSTANCE = new Player("Player 1");
+    }
+    return INSTANCE;
+  }
+
+  public static void reset() {
+    INSTANCE = null;
+  }
+
+
+
   public void increaseScore() {
     score += 30;
+    ScoreBoard scoreBoard = ScoreBoard.getInstance();
+    scoreBoard.updateScore();
   }
 
   public String getName() {
