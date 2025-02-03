@@ -2,6 +2,8 @@ package nl.mpdev.panels;
 
 import nl.mpdev.GameManager;
 import nl.mpdev.components.Apple;
+import nl.mpdev.components.GridComponent;
+import nl.mpdev.components.Ladder;
 import nl.mpdev.components.Snake;
 import nl.mpdev.enums.Direction;
 import nl.mpdev.factories.GridComponentFactory;
@@ -20,6 +22,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int height;
   private final Snake snake;
   private final Apple apple;
+  private final Ladder ladder;
   private final Timer timer;
   private final int scoreToWin;
 
@@ -31,6 +34,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.scoreToWin = scoreToWin;
     this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
+    this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height)) ;
     this.setPreferredSize(new Dimension(width, height));
     this.setFocusable(true);
     this.addKeyListener(this);
@@ -45,6 +49,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     drawGrid(g);
     snake.draw(g, cellSize);
     apple.draw(g, cellSize);
+    if(ladder != null){
+    ladder.draw(g,cellSize);
+    }
   }
 
   private void drawGrid(Graphics g) {
@@ -79,6 +86,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       apple.respawn();
     }
     repaint();
+  }
+
+  private void hasPlayerWon() {
+    if(ladder != null && snake.checkLadderCollision(ladder)) {
+      timer.stop();
+      System.out.println("Congratulations! You have won the game!");
+    }
   }
 
   @Override

@@ -113,6 +113,10 @@ public class Snake implements GridComponent {
     }
     return false;
   }
+  public boolean checkLadderCollision(Ladder ladder) {
+    Segment head = body.getFirst();
+    return head.getX() == ladder.getX() && head.getY() == ladder.getY();
+  }
 
   public Direction getDirection() {
     return direction;
@@ -125,4 +129,5 @@ public class Snake implements GridComponent {
   public boolean isAlive() {
     return isAlive;
   }
+
 }
