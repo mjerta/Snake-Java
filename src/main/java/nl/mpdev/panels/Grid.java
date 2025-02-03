@@ -94,6 +94,11 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
+    if(scoreToWin > 0) {
+      Player.reset();
+      ScoreBoard scoreBoard = ScoreBoard.getInstance();
+      scoreBoard.updateScore();
+    }
     ladder = null;
     timer.start();
   }
