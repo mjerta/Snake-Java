@@ -1,5 +1,6 @@
 package nl.mpdev.panels;
 
+import nl.mpdev.GameManager;
 import nl.mpdev.components.Apple;
 import nl.mpdev.components.Snake;
 import nl.mpdev.enums.Direction;
@@ -71,6 +72,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     snake.move((int) cellSize);
     if (snake.checkAppleCollision(apple)) {
       snake.grow(cellSize);
+      GameManager.getPlayer().increaseScore();
+      System.out.println(GameManager.getPlayer().getScore()); // log out score in console
       apple.respawn();
     }
     repaint();
