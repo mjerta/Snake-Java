@@ -1,5 +1,6 @@
 package nl.mpdev.components;
 
+import org.kordamp.ikonli.material.Material;
 import java.awt.*;
 import java.util.Random;
 
@@ -23,6 +24,7 @@ public class Ladder implements GridComponent {
 
   @Override
   public void draw(Graphics g, double cellSize) {
+    FontIcon ladderIcon = FontIcon.of(Material.LADDER)
     g.setColor(Color.YELLOW);
     g.fillRect(x, y, (int) cellSize, (int) cellSize);
   }
