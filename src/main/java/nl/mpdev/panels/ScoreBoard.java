@@ -7,6 +7,7 @@ import java.awt.*;
 
 public class ScoreBoard extends JPanel {
   private static ScoreBoard INSTANCE;
+  private boolean victoryMessage = false;
 
   private ScoreBoard() {
     int width = 200;
@@ -14,6 +15,7 @@ public class ScoreBoard extends JPanel {
     this.setBackground(Color.BLACK);
     this.setPreferredSize(new Dimension(width, height));
     this.setBorder(BorderFactory.createLineBorder(Color.WHITE));
+
   }
 
   public static ScoreBoard getInstance() {
@@ -31,12 +33,14 @@ public class ScoreBoard extends JPanel {
   }
 
   public void addVictoryMessage() {
-    Graphics g = this.getGraphics();
-    g.setColor(Color.WHITE);
-    g.setFont(new Font("Arial", Font.PLAIN, 20));
-    g.drawString("You won!", 20, 120);
-    g.setFont(new Font("Arial", Font.PLAIN, 13));
-    g.drawString("Press enter for another round", 20, 160);
+    if (victoryMessage) {
+      Graphics g = this.getGraphics();
+      g.setColor(Color.WHITE);
+      g.setFont(new Font("Arial", Font.PLAIN, 20));
+      g.drawString("You won!", 20, 120);
+      g.setFont(new Font("Arial", Font.PLAIN, 13));
+      g.drawString("Press enter for another round", 20, 160);
+    }
   }
 
   @Override
@@ -45,7 +49,11 @@ public class ScoreBoard extends JPanel {
     drawScore(g);
   }
 
-  public void updateScore() {
+  public void updateScoreBoard() {
     repaint();
+  }
+
+  public void setVictoryMessage(boolean victoryMessage) {
+    this.victoryMessage = victoryMessage;
   }
 }

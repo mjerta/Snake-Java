@@ -15,7 +15,7 @@ public class GameManager extends JFrame {
 
 
     // SETUP PANELS
-    Grid grid = new Grid(640, 640, 20, 150);
+    Grid grid = new Grid(640, 640, 20, 0);
     this.add(grid,BorderLayout.WEST);
     this.add(ScoreBoard.getInstance(),BorderLayout.EAST);
     this.pack();
