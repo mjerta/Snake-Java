@@ -48,7 +48,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
-    if(snake == null) {
+    if (snake == null) {
       drawGameOver(g);
     }
     if (snake != null) {
@@ -98,7 +98,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   public void reset() {
     gridEnabled = true;
-    if(snake == null) {
+    if (snake == null) {
       snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     }
     snake.reset(cellSize);
