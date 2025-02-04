@@ -192,7 +192,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         System.exit(0);
         break;
       case 32:
-        timer.setDelay(100);
+        timer.setDelay(initialSpeed);
         break;
       default:
         break;

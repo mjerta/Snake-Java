@@ -1,6 +1,5 @@
 package nl.mpdev.components;
 
-import org.kordamp.ikonli.material.Material;
 import java.awt.*;
 import java.util.Random;
 
@@ -8,25 +7,23 @@ public class Ladder implements GridComponent {
   private final Random random;
   private int x;
   private int y;
-  private double cellSize;
-  private Dimension borderDimension;
 
   public Ladder() {
     this.random = new Random();
   }
 
   public void setInitialPosition(double cellSize, Dimension borderDimension) {
-    this.cellSize = cellSize;
-    this.borderDimension = borderDimension;
     this.x = random.nextInt((int) (borderDimension.width / cellSize)) * (int) cellSize;
     this.y = random.nextInt((int) (borderDimension.height / cellSize)) * (int) cellSize;
   }
 
   @Override
   public void draw(Graphics g, double cellSize) {
-    FontIcon ladderIcon = FontIcon.of(Material.LADDER)
-    g.setColor(Color.YELLOW);
-    g.fillRect(x, y, (int) cellSize, (int) cellSize);
+    Graphics2D g2d = (Graphics2D) g;
+    g2d.setColor(Color.YELLOW);
+    g2d.setStroke(new BasicStroke(3));
+    g2d.drawLine(x + 3, y + 3, x + (int) cellSize - 3, y + (int) cellSize - 3);
+    g2d.drawLine(x  + (int) cellSize - 3, y + 3, x + 3, y + (int) cellSize - 3);
   }
 
   public int getX() {
