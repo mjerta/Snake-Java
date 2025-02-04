@@ -48,6 +48,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
+    if(snake == null) {
+      drawGameOver(g);
+    }
     if (snake != null) {
       snake.draw(g, cellSize);
     }
@@ -94,6 +97,10 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   }
 
   public void reset() {
+    gridEnabled = true;
+    if(snake == null) {
+      snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
+    }
     snake.reset(cellSize);
     if (apple != null) {
       apple.respawn();
@@ -114,9 +121,19 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     gridEnabled = false;
     apple = null;
     snake = null;
+    ladder = null;
     repaint();
     timer.stop();
     System.out.println("The game has stopped, the snake is dead!");
+  }
+
+  private void drawGameOver(Graphics g) {
+    g.setColor(Color.RED);
+    g.setFont(new Font("Arial", Font.BOLD, 50));
+    g.drawString("Game Over", width / 2 - 150, height / 2);
+    g.setColor(Color.WHITE);
+    g.setFont(new Font("Arial", Font.BOLD, 20));
+    g.drawString("Press Enter to restart", width / 2 - 115, height / 2 + 50);
   }
 
   private void handleAppleCollision() {
