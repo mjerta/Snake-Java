@@ -27,7 +27,7 @@ public class Player {
   public void increaseScore() {
     score += 30;
     ScoreBoard scoreBoard = ScoreBoard.getInstance();
-    scoreBoard.updateScore();
+    scoreBoard.updateScoreBoard();
   }
 
   public String getName() {

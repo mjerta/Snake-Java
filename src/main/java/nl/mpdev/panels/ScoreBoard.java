@@ -49,7 +49,11 @@ public class ScoreBoard extends JPanel {
     drawScore(g);
   }
 
-  public void updateScore() {
+  public void updateScoreBoard() {
     repaint();
+  }
+
+  public void setVictoryMessage(boolean victoryMessage) {
+    this.victoryMessage = victoryMessage;
   }
 }

@@ -108,10 +108,11 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
-    if (scoreToWin > 0) {
+    if (Player.getInstance().getScore() > 0) {
       Player.reset();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
-      scoreBoard.updateScore();
+      scoreBoard.setVictoryMessage(false);
+      scoreBoard.updateScoreBoard();
     }
     ladder = null;
     timer.start();
@@ -153,6 +154,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
       timer.stop();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
+      scoreBoard.setVictoryMessage(true);
       scoreBoard.addVictoryMessage();
       System.out.println("Congratulations! You have won the game!");
     }
