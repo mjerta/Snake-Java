@@ -19,12 +19,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final double cellSize;
   private final int width;
   private final int height;
-  private final Snake snake;
   private final Timer timer;
   private final int scoreToWin;
   private final int initialSpeed;
+  private Snake snake;
   private Apple apple;
   private Ladder ladder;
+  private boolean gridEnabled = true;
 
   public Grid(int width, int height, double cellSize, int scoreToWin) {
     this.setBackground(Color.BLACK);
@@ -47,7 +48,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
-    snake.draw(g, cellSize);
+    if (snake != null) {
+      snake.draw(g, cellSize);
+    }
     if (apple != null) {
       apple.draw(g, cellSize);
     }
@@ -57,6 +60,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   }
 
   private void drawGrid(Graphics g) {
+    if (!gridEnabled) {
+      return;
+    }
     Graphics2D g2d = (Graphics2D) g;
     g2d.setColor(Color.lightGray);
     Path2D.Double path = new Path2D.Double();
@@ -105,6 +111,10 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   }
 
   private void handleSnakeDeath() {
+    gridEnabled = false;
+    apple = null;
+    snake = null;
+    repaint();
     timer.stop();
     System.out.println("The game has stopped, the snake is dead!");
   }
@@ -133,33 +143,35 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyTyped(KeyEvent e) {
-    Direction currentDirection = snake.getDirection();
-    switch (e.getKeyChar()) {
-      case 'a':
-        if (currentDirection != Direction.RIGHT) {
-          snake.setDirection(Direction.LEFT);
-        }
-        break;
-      case 'd':
-        if (currentDirection != Direction.LEFT) {
-          snake.setDirection(Direction.RIGHT);
-        }
-        break;
-      case 's':
-        if (currentDirection != Direction.UP) {
-          snake.setDirection(Direction.DOWN);
-        }
-        break;
-      case 'w':
-        if (currentDirection != Direction.DOWN) {
-          snake.setDirection(Direction.UP);
-        }
-        break;
-      case 'g':
-        snake.grow(cellSize);
-        break;
-      default:
-        break;
+    if (snake != null) {
+      Direction currentDirection = snake.getDirection();
+      switch (e.getKeyChar()) {
+        case 'a':
+          if (currentDirection != Direction.RIGHT) {
+            snake.setDirection(Direction.LEFT);
+          }
+          break;
+        case 'd':
+          if (currentDirection != Direction.LEFT) {
+            snake.setDirection(Direction.RIGHT);
+          }
+          break;
+        case 's':
+          if (currentDirection != Direction.UP) {
+            snake.setDirection(Direction.DOWN);
+          }
+          break;
+        case 'w':
+          if (currentDirection != Direction.DOWN) {
+            snake.setDirection(Direction.UP);
+          }
+          break;
+        case 'g':
+          snake.grow(cellSize);
+          break;
+        default:
+          break;
+      }
     }
 
   }
