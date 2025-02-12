@@ -110,8 +110,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
-    if (player.getScore() > 0) {
-      Player.reset();
+    if (player.isWonRound()) {
+      player.setWonRound(false);
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
@@ -220,12 +220,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         snake.setDirection(Direction.UP);
         break;
       case 10:
-        if (player.isWonRound()) {
-          player.setWonRound(false);
-        }
-        else {
           reset();
-        }
         break;
       case 27:
         System.exit(0);

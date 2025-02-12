@@ -16,7 +16,7 @@ public class GameManager extends JFrame {
     this.setTitle("Snake (Java)");
 
     // SETUP PANELS
-    Grid grid = new Grid(640, 640, 20, 0);
+    Grid grid = new Grid(640, 640, 20, scoreTowin);
     this.add(grid, BorderLayout.WEST);
     this.add(ScoreBoard.getInstance(), BorderLayout.EAST);
     this.pack();
@@ -28,5 +28,10 @@ public class GameManager extends JFrame {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }
+  }
+
+  public void increaseLevel(){
+    level++;
+    scoreTowin += 150;
   }
 }
