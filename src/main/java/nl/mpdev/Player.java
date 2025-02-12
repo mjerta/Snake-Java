@@ -5,6 +5,8 @@ import nl.mpdev.panels.ScoreBoard;
 public class Player {
   private final String name;
   private int score = 0;
+
+  private boolean wonRound = false;
   private static Player INSTANCE;
 
   private Player(String name) {
@@ -36,5 +38,9 @@ public class Player {
 
   public int getScore() {
     return score;
+  }
+
+  public void setWonRound(boolean wonRound) {
+    this.wonRound = wonRound;
   }
 }
