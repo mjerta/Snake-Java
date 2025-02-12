@@ -110,7 +110,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
-    if (Player.getInstance().getScore() > 0) {
+    if (player.getScore() > 0) {
       Player.reset();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
@@ -141,13 +141,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   private void handleAppleCollision() {
     snake.grow(cellSize);
-    Player.getInstance().increaseScore();
-    if (Player.getInstance().getScore() >= scoreToWin) {
+    player.increaseScore();
+    if (player.getScore() >= scoreToWin) {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
     }
     else {
-      System.out.println(Player.getInstance().getScore()); // log out score in console
+      System.out.println(player.getScore());// log out score in console
       apple.respawn();
     }
   }
@@ -155,7 +155,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private void handleRoundWon() {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
       timer.stop();
-      Player player = Player.getInstance();
       player.setWonRound(true);
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(true);
@@ -221,6 +220,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         snake.setDirection(Direction.UP);
         break;
       case 10:
+        if(player.get)
         reset();
         break;
       case 27:
