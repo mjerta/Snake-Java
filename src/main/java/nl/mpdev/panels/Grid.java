@@ -92,7 +92,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     if (ladder == null && snake.checkAppleCollision(apple)) {
       handleAppleCollision();
     }
-    hasPlayerWon();
+    handleRoundWon();
     repaint();
   }
 
@@ -150,9 +150,11 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
   }
 
-  private void hasPlayerWon() {
+  private void handleRoundWon() {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
       timer.stop();
+      Player player = Player.getInstance();
+      player.setWonRound(true);
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(true);
       scoreBoard.addVictoryMessage();

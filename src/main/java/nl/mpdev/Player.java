@@ -24,8 +24,6 @@ public class Player {
     INSTANCE = null;
   }
 
-
-
   public void increaseScore() {
     score += 30;
     ScoreBoard scoreBoard = ScoreBoard.getInstance();
@@ -38,10 +36,6 @@ public class Player {
 
   public int getScore() {
     return score;
-  }
-
-  public boolean isWonRound() {
-    return wonRound;
   }
 
   public void setWonRound(boolean wonRound) {
