@@ -40,6 +40,10 @@ public class Player {
     return score;
   }
 
+  public boolean isWonRound() {
+    return wonRound;
+  }
+
   public void setWonRound(boolean wonRound) {
     this.wonRound = wonRound;
   }
