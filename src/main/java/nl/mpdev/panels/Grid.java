@@ -26,6 +26,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private Apple apple;
   private Ladder ladder;
   private boolean gridEnabled = true;
+  private Player player;
 
   public Grid(int width, int height, double cellSize, int scoreToWin) {
     this.setBackground(Color.BLACK);
@@ -41,6 +42,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.initialSpeed = 100;
     this.timer = new Timer(initialSpeed, this);
     timer.start();
+    player = Player.getInstance();
   }
 
   @Override
