@@ -220,8 +220,12 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         snake.setDirection(Direction.UP);
         break;
       case 10:
-        if(player.get)
-        reset();
+        if (player.isWonRound()) {
+          player.setWonRound(false);
+        }
+        else {
+          reset();
+        }
         break;
       case 27:
         System.exit(0);

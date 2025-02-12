@@ -20,10 +20,6 @@ public class Player {
     return INSTANCE;
   }
 
-  public static void reset() {
-    INSTANCE = null;
-  }
-
   public void increaseScore() {
     score += 30;
     ScoreBoard scoreBoard = ScoreBoard.getInstance();
