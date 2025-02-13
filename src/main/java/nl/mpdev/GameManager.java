@@ -24,10 +24,11 @@ public class GameManager extends JFrame {
     this.setVisible(true);
   }
 
-  public static void getInstance() {
+  public GameManager getInstance() {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }
+    return INSTANCE;
   }
 
   public void increaseLevel(){

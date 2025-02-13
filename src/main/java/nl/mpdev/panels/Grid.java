@@ -1,5 +1,6 @@
 package nl.mpdev.panels;
 
+import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 import nl.mpdev.components.Apple;
 import nl.mpdev.components.Ladder;
@@ -112,6 +113,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
     if (player.isWonRound()) {
       player.setWonRound(false);
+      GameManager gameManager = GameManager.getInstance();
+
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
