@@ -27,7 +27,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private Ladder ladder;
   private boolean gridEnabled = true;
   private final Player player;
-  private final GameManager gameManager;
 
   public Grid(int width, int height, double cellSize) {
     this.setBackground(Color.BLACK);
@@ -43,7 +42,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.timer = new Timer(initialSpeed, this);
     timer.start();
     player = Player.getInstance();
-    gameManager = GameManager.getInstance();
   }
 
   @Override
@@ -113,7 +111,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
     if (player.isWonRound()) {
       player.setWonRound(false);
-      gameManager.increaseLevel();
+      GameManager.getInstance().increaseLevel();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
@@ -144,7 +142,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private void handleAppleCollision() {
     snake.grow(cellSize);
     player.increaseScore();
-    if (player.getScore() >= gameManager.getScoreTowin()) {
+    if (player.getScore() >= GameManager.getInstance().getScoreToWin()) {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
     }

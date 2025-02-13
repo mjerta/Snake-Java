@@ -9,7 +9,7 @@ import java.awt.*;
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
   private int level = 0;
-  private int scoreTowin = 150;
+  private int scoreToWin = 150;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -33,10 +33,10 @@ public class GameManager extends JFrame {
 
   public void increaseLevel(){
     level++;
-    scoreTowin += 150;
+    scoreToWin = scoreToWin * 2;
   }
 
-  public int getScoreTowin() {
-    return scoreTowin;
+  public int getScoreToWin() {
+    return scoreToWin;
   }
 }
