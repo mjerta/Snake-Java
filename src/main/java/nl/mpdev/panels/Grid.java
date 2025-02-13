@@ -21,20 +21,19 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Timer timer;
-  private final int scoreToWin;
   private final int initialSpeed;
   private Snake snake;
   private Apple apple;
   private Ladder ladder;
   private boolean gridEnabled = true;
-  private Player player;
+  private final Player player;
+  private final GameManager gameManager;
 
-  public Grid(int width, int height, double cellSize, int scoreToWin) {
+  public Grid(int width, int height, double cellSize) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
-    this.scoreToWin = scoreToWin;
     this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     this.setPreferredSize(new Dimension(width, height));
@@ -44,6 +43,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.timer = new Timer(initialSpeed, this);
     timer.start();
     player = Player.getInstance();
+    gameManager = GameManager.getInstance();
   }
 
   @Override
@@ -113,7 +113,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
     if (player.isWonRound()) {
       player.setWonRound(false);
-//      GameManager.getInstance().increaseLevel();
+      GameManager.getInstance().increaseLevel();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
@@ -144,7 +144,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private void handleAppleCollision() {
     snake.grow(cellSize);
     player.increaseScore();
-    if (player.getScore() >= scoreToWin) {
+    if (player.getScore() >= gameManager.getsc) {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
     }
@@ -222,7 +222,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         snake.setDirection(Direction.UP);
         break;
       case 10:
-          reset();
+        reset();
         break;
       case 27:
         System.exit(0);
