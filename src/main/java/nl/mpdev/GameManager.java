@@ -24,7 +24,7 @@ public class GameManager extends JFrame {
     this.setVisible(true);
   }
 
-  public GameManager getInstance() {
+  public static GameManager getInstance() {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }

@@ -113,8 +113,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
     if (player.isWonRound()) {
       player.setWonRound(false);
-      GameManager gameManager = GameManager.getInstance();
-
+//      GameManager.getInstance().increaseLevel();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
