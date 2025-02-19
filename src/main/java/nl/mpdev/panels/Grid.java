@@ -95,6 +95,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
     handleRoundWon();
     repaint();
+    Toolkit.getDefaultToolkit().sync();
   }
 
   public void reset() {
