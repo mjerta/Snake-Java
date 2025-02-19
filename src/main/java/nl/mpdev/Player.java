@@ -20,8 +20,8 @@ public class Player {
     return INSTANCE;
   }
 
-  public static void reset() {
-    INSTANCE = null;
+  public void resetScore() {
+    this.score = 0;
   }
 
   public void increaseScore() {

@@ -85,6 +85,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
+    System.out.println(snake.isAlive());
     if (!snake.isAlive()) {
       handleSnakeDeath();
       return;
@@ -103,11 +104,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     if (snake == null) {
       snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     }
-    snake.reset(cellSize);
     if (apple != null) {
       apple.respawn();
-    }
-    else {
+    } else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
     if (player.isWonRound()) {
@@ -117,6 +116,14 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
     }
+    // Apparantly the snake is already been put on alive before the snake reset
+    // takes place
+    System.out.println(snake.isAlive());
+    if (!snake.isAlive()) {
+      player.resetScore();
+      ScoreBoard.getInstance().updateScoreBoard();
+    }
+    snake.reset(cellSize);
     ladder = null;
     timer.start();
   }
@@ -146,8 +153,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     if (player.getScore() >= GameManager.getInstance().getScoreToWin()) {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
-    }
-    else {
+    } else {
       System.out.println(player.getScore());// log out score in console
       apple.respawn();
     }
@@ -201,7 +207,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_SPACE) timer.setDelay(50);
+    if (e.getKeyCode() == KeyEvent.VK_SPACE)
+      timer.setDelay(50);
   }
 
   @Override
