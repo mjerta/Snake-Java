@@ -1,9 +1,11 @@
 package nl.mpdev.panels;
 
+import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 
 import javax.swing.*;
 import java.awt.*;
+import java.rmi.MarshalException;
 
 public class ScoreBoard extends JPanel {
   private static ScoreBoard INSTANCE;
@@ -27,8 +29,9 @@ public class ScoreBoard extends JPanel {
   private void drawScore(Graphics g) {
     g.setColor(Color.WHITE);
     g.setFont(new Font("Arial", Font.PLAIN, 20));
-    g.drawString("Player: " + Player.getInstance().getName(), 20, 40);
-    g.drawString("Score: " + Player.getInstance().getScore(), 20, 80);
+    g.drawString("Level: " + GameManager.getInstance().getLevel(), 20, 40);
+    g.drawString("Player: " + Player.getInstance().getName(), 20, 80);
+    g.drawString("Score: " + Player.getInstance().getScore(), 20, 120);
   }
 
   public void addVictoryMessage() {
@@ -36,9 +39,9 @@ public class ScoreBoard extends JPanel {
       Graphics g = this.getGraphics();
       g.setColor(Color.WHITE);
       g.setFont(new Font("Arial", Font.PLAIN, 20));
-      g.drawString("You won!", 20, 120);
+      g.drawString("You won!", 20, 160);
       g.setFont(new Font("Arial", Font.PLAIN, 13));
-      g.drawString("Press enter for another round", 20, 160);
+      g.drawString("Press enter for another round", 20, 200);
     }
   }
 

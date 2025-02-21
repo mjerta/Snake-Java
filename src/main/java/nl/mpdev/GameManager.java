@@ -8,7 +8,7 @@ import java.awt.*;
 
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
-  private int level = 0;
+  private int level = 1;
   private int scoreToWin = 150;
 
   private GameManager() throws HeadlessException {
@@ -39,9 +39,14 @@ public class GameManager extends JFrame {
   public int getScoreToWin() {
     return scoreToWin;
   }
-  
+
   public void resetGameStatus() {
-    level = 0;
+    level = 1;
     scoreToWin = 150;
   }
+
+  public int getLevel() {
+    return level;
+  }
+
 }
