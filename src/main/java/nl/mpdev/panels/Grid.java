@@ -176,27 +176,29 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       Direction currentDirection = snake.getDirection();
       switch (e.getKeyChar()) {
         case 'a':
-          if (currentDirection != Direction.RIGHT) {
+          if (currentDirection != Direction.RIGHT && snake != null) {
             snake.setDirection(Direction.LEFT);
           }
           break;
         case 'd':
-          if (currentDirection != Direction.LEFT) {
+          if (currentDirection != Direction.LEFT && snake != null) {
             snake.setDirection(Direction.RIGHT);
           }
           break;
         case 's':
-          if (currentDirection != Direction.UP) {
+          if (currentDirection != Direction.UP && snake != null) {
             snake.setDirection(Direction.DOWN);
           }
           break;
         case 'w':
-          if (currentDirection != Direction.DOWN) {
+          if (currentDirection != Direction.DOWN && snake != null) {
             snake.setDirection(Direction.UP);
           }
           break;
         case 'g':
-          snake.grow(cellSize);
+          if (snake != null) {
+            snake.grow(cellSize);
+          }
           break;
         default:
           break;
