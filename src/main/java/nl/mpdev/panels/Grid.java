@@ -85,7 +85,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void actionPerformed(ActionEvent e) {
-    System.out.println(snake.isAlive());
     if (!snake.isAlive()) {
       handleSnakeDeath();
       return;
