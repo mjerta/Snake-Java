@@ -102,7 +102,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     gridEnabled = true;
     if (snake == null) {
       snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
+      // The reset of this will take place because it needs to happen after the enter-press
       player.resetScore();
+      GameManager.getInstance().resetGameStatus();
       ScoreBoard.getInstance().updateScoreBoard();
     }
     if (apple != null) {
