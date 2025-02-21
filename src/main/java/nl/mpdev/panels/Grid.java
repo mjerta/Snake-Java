@@ -103,6 +103,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     gridEnabled = true;
     if (snake == null) {
       snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
+      player.resetScore();
+      ScoreBoard.getInstance().updateScoreBoard();
     }
     if (apple != null) {
       apple.respawn();
@@ -115,13 +117,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
-    }
-    // Apparantly the snake is already been put on alive before the snake reset
-    // takes place
-    System.out.println(snake.isAlive());
-    if (!snake.isAlive()) {
-      player.resetScore();
-      ScoreBoard.getInstance().updateScoreBoard();
     }
     snake.reset(cellSize);
     ladder = null;
