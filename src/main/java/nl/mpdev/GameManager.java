@@ -31,7 +31,7 @@ public class GameManager extends JFrame {
     return INSTANCE;
   }
 
-  public void increaseLevel(){
+  public void increaseLevel() {
     level++;
     scoreToWin = scoreToWin * 2;
   }
@@ -39,4 +39,13 @@ public class GameManager extends JFrame {
   public int getScoreToWin() {
     return scoreToWin;
   }
+
+  public void setLevel(int level) {
+    this.level = level;
+  }
+
+  public void setScoreToWin(int scoreToWin) {
+    this.scoreToWin = scoreToWin;
+  }
+
 }
