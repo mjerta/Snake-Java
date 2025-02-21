@@ -42,7 +42,6 @@ public class GameManager extends JFrame {
   
   public void resetGameStatus() {
     level = 0;
-    scoreToWin = 0;
+    scoreToWin = 150;
   }
-
 }
