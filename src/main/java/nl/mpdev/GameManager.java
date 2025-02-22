@@ -16,26 +16,24 @@ public class GameManager extends JFrame {
     this.setTitle("Snake (Java)");
 
     // SETUP PANELS
+    JLayeredPane layeredPane = new JLayeredPane();
+    layeredPane.setLayout(new OverlayLayout(layeredPane));
 
-    // Create the top panel with a layout manager
-    JPanel topPanel = new JPanel();
-    topPanel.setLayout(new FlowLayout()); // You can also use other layout managers
-    topPanel.setBackground(Color.GREEN);
-
-    // Add dynamic panels or components to topPanel
-    // JLabel exampleLabel = new JLabel("Top Panel Label");
-    // topPanel.add(exampleLabel); // Add more components as needed
+    JPanel mainPanel = new JPanel();
+    
+    JPanel overlayPanel = new JPanel();
+    overlayPanel.setBackground(Color.GREEN);
 
     Grid grid = new Grid(640, 640, 20);
-    this.add(grid, BorderLayout.WEST);
-    this.add(ScoreBoard.getInstance(), BorderLayout.EAST);
-    this.add(topPanel, BorderLayout.NORTH);
+    mainPanel.add(grid, BorderLayout.WEST);
+    mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
+
+    layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+    layeredPane.add(overlayPanel, JLayeredPane.PALETTE_LAYER);
+
+    this.add(layeredPane);
     this.pack();
     System.out.println(this.getWidth() + " " + this.getHeight());
-    SwingUtilities.invokeLater(() -> {
-      topPanel.setPreferredSize(new Dimension(this.getWidth(), this.getHeight()));
-      topPanel.revalidate();
-    });
     this.setResizable(false);
     this.setVisible(true);
   }
