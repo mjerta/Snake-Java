@@ -210,31 +210,41 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    switch (e.getKeyCode()) {
-      case KeyEvent.VK_LEFT:
-        snake.setDirection(Direction.LEFT);
-        break;
-      case KeyEvent.VK_RIGHT:
-        snake.setDirection(Direction.RIGHT);
-        break;
-      case KeyEvent.VK_DOWN:
-        snake.setDirection(Direction.DOWN);
-        break;
-      case KeyEvent.VK_UP:
-        snake.setDirection(Direction.UP);
-        break;
-      case 10:
-        reset();
-        break;
-      case 27:
-        System.exit(0);
-        break;
-      case 32:
-        timer.setDelay(initialSpeed);
-        break;
-      default:
-        break;
+    if (snake != null) {
+      Direction currentDirection = snake.getDirection();
+      switch (e.getKeyCode()) {
+        case KeyEvent.VK_LEFT:
+          if (currentDirection != Direction.RIGHT) {
+            snake.setDirection(Direction.LEFT);
+            break;
+          }
+        case KeyEvent.VK_RIGHT:
+          if (currentDirection != Direction.LEFT) {
+            snake.setDirection(Direction.RIGHT);
+            break;
+          }
+        case KeyEvent.VK_DOWN:
+          if (currentDirection != Direction.UP) {
+            snake.setDirection(Direction.DOWN);
+            break;
+          }
+        case KeyEvent.VK_UP:
+          if (currentDirection != Direction.DOWN) {
+            snake.setDirection(Direction.UP);
+            break;
+          }
+        case 10:
+          reset();
+          break;
+        case 27:
+          System.exit(0);
+          break;
+        case 32:
+          timer.setDelay(initialSpeed);
+          break;
+        default:
+          break;
+      }
     }
-
   }
 }
