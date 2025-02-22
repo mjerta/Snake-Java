@@ -233,18 +233,22 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
             snake.setDirection(Direction.UP);
             break;
           }
-        case 10:
-          reset();
-          break;
-        case 27:
-          System.exit(0);
-          break;
         case 32:
           timer.setDelay(initialSpeed);
           break;
         default:
           break;
       }
+    }
+    switch (e.getKeyCode()) {
+      case 10:
+        reset();
+        break;
+      case 27:
+        System.exit(0);
+        break;
+      default:
+        break;
     }
   }
 }
