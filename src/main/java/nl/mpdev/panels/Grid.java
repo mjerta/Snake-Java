@@ -102,7 +102,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     gridEnabled = true;
     if (snake == null) {
       snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
-      // The reset of this will take place because it needs to happen after the enter-press
+      // The reset of this will take place because it needs to happen after the
+      // enter-press
       player.resetScore();
       GameManager.getInstance().resetGameStatus();
       ScoreBoard.getInstance().updateScoreBoard();
@@ -172,29 +173,27 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       Direction currentDirection = snake.getDirection();
       switch (e.getKeyChar()) {
         case 'a':
-          if (currentDirection != Direction.RIGHT && snake != null) {
+          if (currentDirection != Direction.RIGHT) {
             snake.setDirection(Direction.LEFT);
           }
           break;
         case 'd':
-          if (currentDirection != Direction.LEFT && snake != null) {
+          if (currentDirection != Direction.LEFT) {
             snake.setDirection(Direction.RIGHT);
           }
           break;
         case 's':
-          if (currentDirection != Direction.UP && snake != null) {
+          if (currentDirection != Direction.UP) {
             snake.setDirection(Direction.DOWN);
           }
           break;
         case 'w':
-          if (currentDirection != Direction.DOWN && snake != null) {
+          if (currentDirection != Direction.DOWN) {
             snake.setDirection(Direction.UP);
           }
           break;
         case 'g':
-          if (snake != null) {
-            snake.grow(cellSize);
-          }
+          snake.grow(cellSize);
           break;
         default:
           break;
@@ -211,7 +210,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyReleased(KeyEvent e) {
-    System.out.println(e.getKeyCode());
     switch (e.getKeyCode()) {
       case KeyEvent.VK_LEFT:
         snake.setDirection(Direction.LEFT);
