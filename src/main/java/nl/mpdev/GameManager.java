@@ -20,9 +20,21 @@ public class GameManager extends JFrame {
     layeredPane.setLayout(new OverlayLayout(layeredPane));
 
     JPanel mainPanel = new JPanel();
+
+    JPanel overlayPanel = new JPanel(new BorderLayout());
+
+    JPanel inputPanel = new JPanel();
+    inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+    inputPanel.setBackground(Color.RED);
+    inputPanel.add(Box.createVerticalGlue());
+    JButton submitButton = new JButton("Submit");
+    submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    submitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+    inputPanel.add(submitButton);
+    inputPanel.add(Box.createVerticalGlue());
+
+    overlayPanel.add(inputPanel);
     
-    JPanel overlayPanel = new JPanel();
-    overlayPanel.setBackground(Color.GREEN);
 
     Grid grid = new Grid(640, 640, 20);
     mainPanel.add(grid, BorderLayout.WEST);
@@ -34,6 +46,11 @@ public class GameManager extends JFrame {
     this.add(layeredPane);
     this.pack();
     System.out.println(this.getWidth() + " " + this.getHeight());
+    SwingUtilities.invokeLater(() -> {
+      overlayPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
+      overlayPanel.revalidate();
+    });
+    System.out.println(overlayPanel.getWidth() + " " + overlayPanel.getHeight());
     this.setResizable(false);
     this.setVisible(true);
   }
