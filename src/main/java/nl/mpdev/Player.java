@@ -5,6 +5,8 @@ import nl.mpdev.panels.ScoreBoard;
 public class Player {
   private final String name;
   private int score = 0;
+
+  private boolean wonRound = false;
   private static Player INSTANCE;
 
   private Player(String name) {
@@ -18,11 +20,9 @@ public class Player {
     return INSTANCE;
   }
 
-  public static void reset() {
-    INSTANCE = null;
+  public void resetScore() {
+    this.score = 0;
   }
-
-
 
   public void increaseScore() {
     score += 30;
@@ -36,5 +36,13 @@ public class Player {
 
   public int getScore() {
     return score;
+  }
+
+  public boolean isWonRound() {
+    return wonRound;
+  }
+
+  public void setWonRound(boolean wonRound) {
+    this.wonRound = wonRound;
   }
 }

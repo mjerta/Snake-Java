@@ -8,24 +8,45 @@ import java.awt.*;
 
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
+  private int level = 1;
+  private int scoreToWin = 150;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
 
-
     // SETUP PANELS
-    Grid grid = new Grid(640, 640, 20, 0);
-    this.add(grid,BorderLayout.WEST);
-    this.add(ScoreBoard.getInstance(),BorderLayout.EAST);
+    Grid grid = new Grid(640, 640, 20);
+    this.add(grid, BorderLayout.WEST);
+    this.add(ScoreBoard.getInstance(), BorderLayout.EAST);
     this.pack();
     this.setResizable(false);
     this.setVisible(true);
   }
 
-  public static void getInstance() {
+  public static GameManager getInstance() {
     if (INSTANCE == null) {
       INSTANCE = new GameManager();
     }
+    return INSTANCE;
   }
+
+  public void increaseLevel() {
+    level++;
+    scoreToWin = scoreToWin * 2;
+  }
+
+  public int getScoreToWin() {
+    return scoreToWin;
+  }
+
+  public void resetGameStatus() {
+    level = 1;
+    scoreToWin = 150;
+  }
+
+  public int getLevel() {
+    return level;
+  }
+
 }

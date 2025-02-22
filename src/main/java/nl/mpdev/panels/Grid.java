@@ -1,5 +1,6 @@
 package nl.mpdev.panels;
 
+import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 import nl.mpdev.components.Apple;
 import nl.mpdev.components.Ladder;
@@ -20,19 +21,18 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Timer timer;
-  private final int scoreToWin;
   private final int initialSpeed;
   private Snake snake;
   private Apple apple;
   private Ladder ladder;
   private boolean gridEnabled = true;
+  private final Player player;
 
-  public Grid(int width, int height, double cellSize, int scoreToWin) {
+  public Grid(int width, int height, double cellSize) {
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
     this.cellSize = cellSize;
-    this.scoreToWin = scoreToWin;
     this.snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
     this.apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     this.setPreferredSize(new Dimension(width, height));
@@ -41,6 +41,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     this.initialSpeed = 100;
     this.timer = new Timer(initialSpeed, this);
     timer.start();
+    player = Player.getInstance();
   }
 
   @Override
@@ -92,28 +93,34 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     if (ladder == null && snake.checkAppleCollision(apple)) {
       handleAppleCollision();
     }
-    hasPlayerWon();
+    handleRoundWon();
     repaint();
+    Toolkit.getDefaultToolkit().sync();
   }
 
   public void reset() {
     gridEnabled = true;
     if (snake == null) {
       snake = GridComponentFactory.createSnake(cellSize, new Dimension(width, height));
+      // The reset of this will take place because it needs to happen after the
+      // enter-press
+      player.resetScore();
+      GameManager.getInstance().resetGameStatus();
+      ScoreBoard.getInstance().updateScoreBoard();
     }
-    snake.reset(cellSize);
     if (apple != null) {
       apple.respawn();
-    }
-    else {
+    } else {
       apple = GridComponentFactory.createApple(cellSize, new Dimension(width, height));
     }
-    if (Player.getInstance().getScore() > 0) {
-      Player.reset();
+    if (player.isWonRound()) {
+      player.setWonRound(false);
+      GameManager.getInstance().increaseLevel();
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(false);
       scoreBoard.updateScoreBoard();
     }
+    snake.reset(cellSize);
     ladder = null;
     timer.start();
   }
@@ -139,20 +146,20 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   private void handleAppleCollision() {
     snake.grow(cellSize);
-    Player.getInstance().increaseScore();
-    if (Player.getInstance().getScore() >= scoreToWin) {
+    player.increaseScore();
+    if (player.getScore() >= GameManager.getInstance().getScoreToWin()) {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
-    }
-    else {
-      System.out.println(Player.getInstance().getScore()); // log out score in console
+    } else {
+      System.out.println(player.getScore());// log out score in console
       apple.respawn();
     }
   }
 
-  private void hasPlayerWon() {
+  private void handleRoundWon() {
     if (ladder != null && snake.checkLadderCollision(ladder)) {
       timer.stop();
+      player.setWonRound(true);
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(true);
       scoreBoard.addVictoryMessage();
@@ -197,37 +204,47 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   @Override
   public void keyPressed(KeyEvent e) {
-    if (e.getKeyCode() == KeyEvent.VK_SPACE) timer.setDelay(50);
+    if (e.getKeyCode() == KeyEvent.VK_SPACE)
+      timer.setDelay(50);
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
-    System.out.println(e.getKeyCode());
-    switch (e.getKeyCode()) {
-      case KeyEvent.VK_LEFT:
-        snake.setDirection(Direction.LEFT);
-        break;
-      case KeyEvent.VK_RIGHT:
-        snake.setDirection(Direction.RIGHT);
-        break;
-      case KeyEvent.VK_DOWN:
-        snake.setDirection(Direction.DOWN);
-        break;
-      case KeyEvent.VK_UP:
-        snake.setDirection(Direction.UP);
-        break;
-      case 10:
-        reset();
-        break;
-      case 27:
-        System.exit(0);
-        break;
-      case 32:
-        timer.setDelay(initialSpeed);
-        break;
-      default:
-        break;
+    if (snake != null) {
+      Direction currentDirection = snake.getDirection();
+      switch (e.getKeyCode()) {
+        case KeyEvent.VK_LEFT:
+          if (currentDirection != Direction.RIGHT) {
+            snake.setDirection(Direction.LEFT);
+            break;
+          }
+        case KeyEvent.VK_RIGHT:
+          if (currentDirection != Direction.LEFT) {
+            snake.setDirection(Direction.RIGHT);
+            break;
+          }
+        case KeyEvent.VK_DOWN:
+          if (currentDirection != Direction.UP) {
+            snake.setDirection(Direction.DOWN);
+            break;
+          }
+        case KeyEvent.VK_UP:
+          if (currentDirection != Direction.DOWN) {
+            snake.setDirection(Direction.UP);
+            break;
+          }
+        case 10:
+          reset();
+          break;
+        case 27:
+          System.exit(0);
+          break;
+        case 32:
+          timer.setDelay(initialSpeed);
+          break;
+        default:
+          break;
+      }
     }
-
   }
 }
