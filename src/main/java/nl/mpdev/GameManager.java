@@ -26,12 +26,16 @@ public class GameManager extends JFrame {
     JPanel inputPanel = new JPanel();
     inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
     inputPanel.setBackground(Color.RED);
-    inputPanel.add(Box.createVerticalGlue());
+    //inputPanel.add(Box.createVerticalGlue());
     JButton submitButton = new JButton("Submit");
+    JButton anotherButton = new JButton("another button");
+    //JTextField textField = new JTextField();
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    submitButton.setAlignmentY(Component.CENTER_ALIGNMENT);
+    //textField.setAlignmentX(Component.CENTER_ALIGNMENT);
     inputPanel.add(submitButton);
-    inputPanel.add(Box.createVerticalGlue());
+    //inputPanel.add(anotherButton);
+    //inputPanel.add(textField);
+    //inputPanel.add(Box.createVerticalGlue());
 
     overlayPanel.add(inputPanel);
     
