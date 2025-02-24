@@ -24,21 +24,23 @@ public class GameManager extends JFrame {
     JPanel overlayPanel = new JPanel(new BorderLayout());
 
     JPanel inputPanel = new JPanel();
-    inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
+    inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
     inputPanel.setBackground(Color.RED);
-    //inputPanel.add(Box.createVerticalGlue());
+    inputPanel.add(Box.createVerticalGlue());
     JButton submitButton = new JButton("Submit");
     JButton anotherButton = new JButton("another button");
-    //JTextField textField = new JTextField();
+    JTextField textField = new JTextField(13);
+    textField.setMaximumSize(textField.getPreferredSize());
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    //textField.setAlignmentX(Component.CENTER_ALIGNMENT);
+    anotherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
+    textField.setAlignmentX(Component.CENTER_ALIGNMENT);
     inputPanel.add(submitButton);
-    //inputPanel.add(anotherButton);
-    //inputPanel.add(textField);
-    //inputPanel.add(Box.createVerticalGlue());
+    inputPanel.add(Box.createVerticalStrut(10));
+    inputPanel.add(anotherButton);
+    inputPanel.add(textField);
+    inputPanel.add(Box.createVerticalGlue());
 
     overlayPanel.add(inputPanel);
-    
 
     Grid grid = new Grid(640, 640, 20);
     mainPanel.add(grid, BorderLayout.WEST);
@@ -55,6 +57,7 @@ public class GameManager extends JFrame {
       overlayPanel.revalidate();
     });
     System.out.println(overlayPanel.getWidth() + " " + overlayPanel.getHeight());
+    System.out.println(inputPanel.getWidth() + " " + inputPanel.getHeight());
     this.setResizable(false);
     this.setVisible(true);
   }
