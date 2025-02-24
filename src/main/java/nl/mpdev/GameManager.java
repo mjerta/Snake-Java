@@ -31,20 +31,17 @@ public class GameManager extends JFrame {
     inputPanel.setBackground(Color.RED);
     inputPanel.add(Box.createVerticalGlue());
     JButton submitButton = new JButton("Submit");
-    JButton anotherButton = new JButton("another button");
+    submitButton.setFont(new Font("Arial", Font.PLAIN, 30));
+    submitButton.setMargin(new Insets(20, 20, 10, 20));
     JTextField textField = new JTextField(13);
     textField.setFont(new Font("Arial", Font.PLAIN, 30));
-    //textField.setBorder(new EmptyBorder(10, 20, 10, 20));
     textField.setMargin(new Insets(10, 20, 10, 20));
     textField.setMaximumSize(textField.getPreferredSize());
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    anotherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     textField.setAlignmentX(Component.CENTER_ALIGNMENT);
-    inputPanel.add(submitButton);
-    inputPanel.add(Box.createVerticalStrut(10));
-    inputPanel.add(anotherButton);
-    inputPanel.add(Box.createVerticalStrut(10));
     inputPanel.add(textField);
+    inputPanel.add(Box.createVerticalStrut(10));
+    inputPanel.add(submitButton);
     inputPanel.add(Box.createVerticalGlue());
 
     overlayPanel.add(inputPanel);
