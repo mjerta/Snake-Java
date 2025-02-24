@@ -1,0 +1,6 @@
+package nl.mpdev.panels;
+
+import javax.swing.JPanel;
+
+public class Menu extends JPanel {
+}
