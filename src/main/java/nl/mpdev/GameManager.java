@@ -4,6 +4,9 @@ import nl.mpdev.panels.Grid;
 import nl.mpdev.panels.ScoreBoard;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.text.DefaultCaret;
+
 import java.awt.*;
 
 public class GameManager extends JFrame {
@@ -30,6 +33,9 @@ public class GameManager extends JFrame {
     JButton submitButton = new JButton("Submit");
     JButton anotherButton = new JButton("another button");
     JTextField textField = new JTextField(13);
+    textField.setFont(new Font("Arial", Font.PLAIN, 30));
+    //textField.setBorder(new EmptyBorder(10, 20, 10, 20));
+    textField.setMargin(new Insets(10, 20, 10, 20));
     textField.setMaximumSize(textField.getPreferredSize());
     submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
     anotherButton.setAlignmentX(Component.CENTER_ALIGNMENT);
@@ -37,6 +43,7 @@ public class GameManager extends JFrame {
     inputPanel.add(submitButton);
     inputPanel.add(Box.createVerticalStrut(10));
     inputPanel.add(anotherButton);
+    inputPanel.add(Box.createVerticalStrut(10));
     inputPanel.add(textField);
     inputPanel.add(Box.createVerticalGlue());
 
