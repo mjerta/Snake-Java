@@ -5,12 +5,10 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Font;
 import java.awt.Insets;
-import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.concurrent.StructuredTaskScope.Subtask;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
@@ -18,12 +16,12 @@ import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import nl.mpdev.Player;
 
 public class Menu extends JPanel implements ActionListener, KeyListener {
   private JPanel inputPanel;
   private JTextField nameField;
   private JButton submitButton;
-  private String playerName;
 
   public Menu() {
     this.setLayout(new BorderLayout());
@@ -64,8 +62,8 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submitButton) {
       String inputText = nameField.getText();
-      playerName = inputText;
       System.out.println(inputText);
+      Player.getInstance().setName(inputText);
       this.setVisible(false);
     }
 
@@ -84,10 +82,6 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     if (e.getKeyCode() == 10) {
       submitButton.doClick();
     }
-  }
-
-  public String getPlayerName() {
-    return playerName;
   }
 
 }

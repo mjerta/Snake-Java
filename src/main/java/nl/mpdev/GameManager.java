@@ -37,12 +37,10 @@ public class GameManager extends JFrame {
 
     this.add(layeredPane);
     this.pack();
-    System.out.println(this.getWidth() + " " + this.getHeight());
     SwingUtilities.invokeLater(() -> {
       overlayPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
       overlayPanel.revalidate();
     });
-    System.out.println(overlayPanel.getWidth() + " " + overlayPanel.getHeight());
     this.setResizable(false);
     this.setVisible(true);
   }
