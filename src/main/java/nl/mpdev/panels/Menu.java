@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.Insets;
 import java.awt.TextField;
 
+import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
@@ -24,7 +25,8 @@ public class Menu extends JPanel {
     this.nameField = new JTextField(13);
     this.submitButton = new JButton("Submit");
     formatInputs(nameField, new Insets(10, 20, 10, 20));
-    formatInputs(submitButton, new Insets(20, 20, 10, 20);
+    formatInputs(submitButton, new Insets(20, 20, 10, 20));
+    formatPanel();
   }
 
   private <T extends JComponent> void formatInputs(T component, Insets margins) {
@@ -36,6 +38,15 @@ public class Menu extends JPanel {
     }
     nameField.setMaximumSize(nameField.getPreferredSize());
     nameField.setAlignmentX(Component.CENTER_ALIGNMENT);
+  }
+  
+  private void formatPanel() {
+    inputPanel.add(Box.createVerticalGlue());
+    inputPanel.add(nameField);
+    inputPanel.add(Box.createVerticalStrut(10));
+    inputPanel.add(submitButton);
+    inputPanel.add(Box.createVerticalGlue());
+    this.add(inputPanel);
   }
 
 }

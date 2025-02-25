@@ -22,29 +22,9 @@ public class GameManager extends JFrame {
     JLayeredPane layeredPane = new JLayeredPane();
     layeredPane.setLayout(new OverlayLayout(layeredPane));
 
+    // The 2 panels that will hold some sub panels
     JPanel mainPanel = new JPanel();
-
     JPanel overlayPanel = new JPanel(new BorderLayout());
-
-    JPanel inputPanel = new JPanel();
-    inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.PAGE_AXIS));
-    inputPanel.setBackground(Color.RED);
-    inputPanel.add(Box.createVerticalGlue());
-    JButton submitButton = new JButton("Submit");
-    submitButton.setFont(new Font("Arial", Font.PLAIN, 30));
-    submitButton.setMargin(new Insets(20, 20, 10, 20));
-    JTextField textField = new JTextField(13);
-    textField.setFont(new Font("Arial", Font.PLAIN, 30));
-    textField.setMargin(new Insets(10, 20, 10, 20));
-    textField.setMaximumSize(textField.getPreferredSize());
-    submitButton.setAlignmentX(Component.CENTER_ALIGNMENT);
-    textField.setAlignmentX(Component.CENTER_ALIGNMENT);
-    inputPanel.add(textField);
-    inputPanel.add(Box.createVerticalStrut(10));
-    inputPanel.add(submitButton);
-    inputPanel.add(Box.createVerticalGlue());
-
-    overlayPanel.add(inputPanel);
 
     Grid grid = new Grid(640, 640, 20);
     mainPanel.add(grid, BorderLayout.WEST);
