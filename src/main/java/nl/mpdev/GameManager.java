@@ -1,6 +1,7 @@
 package nl.mpdev;
 
 import nl.mpdev.panels.Grid;
+import nl.mpdev.panels.Menu;
 import nl.mpdev.panels.ScoreBoard;
 
 import javax.swing.*;
@@ -24,11 +25,12 @@ public class GameManager extends JFrame {
 
     // The 2 panels that will hold some sub panels
     JPanel mainPanel = new JPanel();
-    JPanel overlayPanel = new JPanel(new BorderLayout());
+    JPanel overlayPanel = new Menu();
 
     Grid grid = new Grid(640, 640, 20);
     mainPanel.add(grid, BorderLayout.WEST);
     mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
+
 
     layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
     layeredPane.add(overlayPanel, JLayeredPane.PALETTE_LAYER);
@@ -41,7 +43,6 @@ public class GameManager extends JFrame {
       overlayPanel.revalidate();
     });
     System.out.println(overlayPanel.getWidth() + " " + overlayPanel.getHeight());
-    System.out.println(inputPanel.getWidth() + " " + inputPanel.getHeight());
     this.setResizable(false);
     this.setVisible(true);
   }
