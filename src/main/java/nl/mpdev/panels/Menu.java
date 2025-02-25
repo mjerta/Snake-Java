@@ -23,6 +23,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
   private JPanel inputPanel;
   private JTextField nameField;
   private JButton submitButton;
+  private String playerName;
 
   public Menu() {
     this.setLayout(new BorderLayout());
@@ -63,7 +64,9 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submitButton) {
       String inputText = nameField.getText();
+      playerName = inputText;
       System.out.println(inputText);
+      this.setVisible(false);
     }
 
   }
@@ -81,6 +84,10 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     if (e.getKeyCode() == 10) {
       submitButton.doClick();
     }
+  }
+
+  public String getPlayerName() {
+    return playerName;
   }
 
 }
