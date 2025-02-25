@@ -31,7 +31,6 @@ public class GameManager extends JFrame {
     mainPanel.add(grid, BorderLayout.WEST);
     mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
 
-
     layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
     layeredPane.add(overlayPanel, JLayeredPane.PALETTE_LAYER);
 
@@ -39,7 +38,9 @@ public class GameManager extends JFrame {
     this.pack();
     SwingUtilities.invokeLater(() -> {
       overlayPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
+      System.out.println(overlayPanel.getWidth() + " " + overlayPanel.getHeight());
       overlayPanel.revalidate();
+      overlayPanel.repaint();
     });
     this.setResizable(false);
     this.setVisible(true);
