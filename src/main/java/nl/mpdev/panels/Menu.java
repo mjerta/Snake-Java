@@ -3,6 +3,7 @@ package nl.mpdev.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -17,14 +18,17 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
+import javax.swing.border.EmptyBorder;
 
 import nl.mpdev.Player;
 
 public class Menu extends JPanel implements ActionListener, KeyListener {
   private JPanel inputPanel;
+  private JLabel nameLabel;
   private JTextField nameField;
   private JButton submitButton;
 
@@ -33,30 +37,41 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     this.inputPanel = new Background();
     this.inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
     //this.inputPanel.setBackground(Color.RED);
+    this.nameLabel = new JLabel("Enter your name");
     this.nameField = new JTextField(13);
     this.submitButton = new JButton("Submit");
-    formatInputs(nameField, new Insets(20, 20, 10, 20));
-    formatInputs(submitButton, new Insets(20, 20, 10, 20));
+    formatInputs(nameLabel, 20,20,10,20);
+    formatInputs(nameField, 20,20,10,20);
+    formatInputs(submitButton, 20,20,10,20);
     formatPanel();
     submitButton.addActionListener(this);
     submitButton.addKeyListener(this);
     nameField.addKeyListener(this);
   }
 
-  private <T extends JComponent> void formatInputs(T component, Insets margins) {
+  private <T extends JComponent> void formatInputs(T component, int... margins) {
     component.setFont(new Font("Arial", Font.PLAIN, 30));
     if (component instanceof JButton) {
-      ((JButton) component).setMargin(margins);
+      ((JButton) component).setMargin(new Insets(margins[0], margins[1], margins[2], margins[3]));
+      ((JButton) component).setFont(new Font("Arial", Font.BOLD, 30));
+      ((JButton) component).setForeground(Color.RED);
+    }
+    else if(component instanceof JLabel){
+      ((JLabel) component).setBorder(new EmptyBorder(margins[0], margins[1], margins[2], margins[3]));
+      ((JLabel) component).setForeground(Color.RED);
+      ((JLabel) component).setFont(new Font("Arial", Font.BOLD, 30));
     }
     else if (component instanceof JTextField) {
-      ((JTextField) component).setMargin(margins);
+      ((JTextField) component).setMargin(new Insets(margins[0], margins[1], margins[2], margins[3]));
     }
-    component.setMaximumSize(nameField.getPreferredSize());
+    component.setMaximumSize(component.getPreferredSize());
     component.setAlignmentX(Component.CENTER_ALIGNMENT);
   }
 
   private void formatPanel() {
     inputPanel.add(Box.createVerticalGlue());
+    inputPanel.add(nameLabel);
+    inputPanel.add(Box.createVerticalStrut(10));
     inputPanel.add(nameField);
     inputPanel.add(Box.createVerticalStrut(10));
     inputPanel.add(submitButton);
@@ -72,7 +87,6 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
       Player.getInstance().setName(inputText);
       this.setVisible(false);
     }
-
   }
 
   @Override
