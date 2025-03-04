@@ -5,8 +5,6 @@ import nl.mpdev.panels.Menu;
 import nl.mpdev.panels.ScoreBoard;
 
 import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.DefaultCaret;
 
 import java.awt.*;
 
@@ -14,6 +12,7 @@ public class GameManager extends JFrame {
   private static GameManager INSTANCE;
   private int level = 1;
   private int scoreToWin = 150;
+  private Menu menu;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -25,22 +24,22 @@ public class GameManager extends JFrame {
 
     // The 2 panels that will hold some sub panels
     JPanel mainPanel = new JPanel();
-    JPanel overlayPanel = new Menu();
+    menu = new Menu();
 
     Grid grid = new Grid(640, 640, 20);
     mainPanel.add(grid, BorderLayout.WEST);
     mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
 
     layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
-    layeredPane.add(overlayPanel, JLayeredPane.PALETTE_LAYER);
+    layeredPane.add(menu, JLayeredPane.PALETTE_LAYER);
 
     this.add(layeredPane);
     this.pack();
     SwingUtilities.invokeLater(() -> {
-      overlayPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
-      System.out.println(overlayPanel.getWidth() + " " + overlayPanel.getHeight());
-      overlayPanel.revalidate();
-      overlayPanel.repaint();
+      menu.setPreferredSize(new Dimension(getWidth(), getHeight()));
+      System.out.println(menu.getWidth() + " " + menu.getHeight());
+      menu.revalidate();
+      menu.repaint();
     });
     this.setResizable(false);
     this.setVisible(true);
@@ -71,4 +70,7 @@ public class GameManager extends JFrame {
     return level;
   }
 
+  public Menu getMenu() {
+    return menu;
+  }
 }

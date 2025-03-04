@@ -195,6 +195,10 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         case 'g':
           snake.grow(cellSize);
           break;
+        case 'm':
+          GameManager.getInstance().getMenu().setVisible(true);
+          timer.stop();
+          break;
         default:
           break;
       }
