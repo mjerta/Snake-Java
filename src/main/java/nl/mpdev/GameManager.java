@@ -13,11 +13,13 @@ public class GameManager extends JFrame {
   private int level = 1;
   private int scoreToWin = 150;
   private Menu menu;
+  private Grid grid;
+  private boolean isRunning;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
-
+    this.isRunning = false;
     // SETUP PANELS
     JLayeredPane layeredPane = new JLayeredPane();
     layeredPane.setLayout(new OverlayLayout(layeredPane));
@@ -26,7 +28,7 @@ public class GameManager extends JFrame {
     JPanel mainPanel = new JPanel();
     menu = new Menu();
 
-    Grid grid = new Grid(640, 640, 20);
+    grid = new Grid(640, 640, 20);
     mainPanel.add(grid, BorderLayout.WEST);
     mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
 
@@ -72,5 +74,9 @@ public class GameManager extends JFrame {
 
   public Menu getMenu() {
     return menu;
+  }
+
+  public Grid getGrid() {
+    return grid;
   }
 }

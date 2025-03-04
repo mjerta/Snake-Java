@@ -255,4 +255,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         break;
     }
   }
+
+  public Timer getTimer() {
+    return timer;
+  }
 }
