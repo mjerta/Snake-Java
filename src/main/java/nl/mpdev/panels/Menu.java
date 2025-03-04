@@ -3,10 +3,7 @@ package nl.mpdev.panels;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Image;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,13 +12,11 @@ import java.awt.event.KeyListener;
 
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
 import javax.swing.border.EmptyBorder;
 
 import nl.mpdev.Player;
@@ -36,7 +31,6 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     this.setLayout(new BorderLayout());
     this.inputPanel = new Background();
     this.inputPanel.setLayout(new BoxLayout(inputPanel, BoxLayout.Y_AXIS));
-    //this.inputPanel.setBackground(Color.RED);
     this.nameLabel = new JLabel("Enter your name");
     this.nameField = new JTextField(13);
     this.submitButton = new JButton("Submit");
@@ -54,11 +48,11 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     if (component instanceof JButton) {
       ((JButton) component).setMargin(new Insets(margins[0], margins[1], margins[2], margins[3]));
       ((JButton) component).setFont(new Font("Arial", Font.BOLD, 30));
-      ((JButton) component).setForeground(Color.RED);
+      ((JButton) component).setForeground(Color.BLACK);
     }
     else if(component instanceof JLabel){
       ((JLabel) component).setBorder(new EmptyBorder(margins[0], margins[1], margins[2], margins[3]));
-      ((JLabel) component).setForeground(Color.RED);
+      ((JLabel) component).setForeground(Color.WHITE);
       ((JLabel) component).setFont(new Font("Arial", Font.BOLD, 30));
     }
     else if (component instanceof JTextField) {
