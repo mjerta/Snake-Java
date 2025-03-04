@@ -34,9 +34,9 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     this.nameLabel = new JLabel("Enter your name");
     this.nameField = new JTextField(13);
     this.submitButton = new JButton("Submit");
-    formatInputs(nameLabel,1,Color.WHITE, 20, 20, 10, 20);
-    formatInputs(nameField,0, Color.BLACK, 20, 20, 10, 20);
-    formatInputs(submitButton,1, Color.BLACK, 20, 20, 10, 20);
+    formatInputs(nameLabel, 1, Color.WHITE, 20, 20, 10, 20);
+    formatInputs(nameField, 0, Color.BLACK, 20, 20, 10, 20);
+    formatInputs(submitButton, 1, Color.BLACK, 20, 20, 10, 20);
     formatPanel();
     submitButton.addActionListener(this);
     submitButton.addKeyListener(this);
@@ -96,6 +96,9 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
   public void keyReleased(KeyEvent e) {
     if (e.getKeyCode() == 10) {
       submitButton.doClick();
+    }
+    if (e.getKeyCode() == 27) {
+      System.exit(0);
     }
   }
 }
