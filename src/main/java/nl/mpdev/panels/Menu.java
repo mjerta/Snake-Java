@@ -65,7 +65,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
   private void formatPanel() {
     inputPanel.add(Box.createVerticalGlue());
     inputPanel.add(nameLabel);
-    inputPanel.add(Box.createVerticalStrut(10));
+    inputPanel.add(Box.createVerticalStrut(100));
     inputPanel.add(nameField);
     inputPanel.add(Box.createVerticalStrut(10));
     inputPanel.add(submitButton);

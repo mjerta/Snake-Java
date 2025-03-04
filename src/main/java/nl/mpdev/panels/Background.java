@@ -10,7 +10,6 @@ public class Background extends JPanel {
 
   private Image originalImage;
   private Image scaledImage;
-  private boolean imageScaled;
 
   public Background() {
     originalImage = new ImageIcon("assets/java_snake_game_dark_mode.jpg").getImage();
