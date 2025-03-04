@@ -34,32 +34,30 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     this.nameLabel = new JLabel("Enter your name");
     this.nameField = new JTextField(13);
     this.submitButton = new JButton("Submit");
-    formatInputs(nameLabel, 20,20,10,20);
-    formatInputs(nameField, 20,20,10,20);
-    formatInputs(submitButton, 20,20,10,20);
+    formatInputs(nameLabel,1,Color.WHITE, 20, 20, 10, 20);
+    formatInputs(nameField,1, Color.WHITE, 20, 20, 10, 20);
+    formatInputs(submitButton,1, Color.BLACK, 20, 20, 10, 20);
     formatPanel();
     submitButton.addActionListener(this);
     submitButton.addKeyListener(this);
     nameField.addKeyListener(this);
   }
 
-  private <T extends JComponent> void formatInputs(T component, int... margins) {
-    component.setFont(new Font("Arial", Font.PLAIN, 30));
-    if (component instanceof JButton) {
-      ((JButton) component).setMargin(new Insets(margins[0], margins[1], margins[2], margins[3]));
-      ((JButton) component).setFont(new Font("Arial", Font.BOLD, 30));
-      ((JButton) component).setForeground(Color.BLACK);
-    }
-    else if(component instanceof JLabel){
-      ((JLabel) component).setBorder(new EmptyBorder(margins[0], margins[1], margins[2], margins[3]));
-      ((JLabel) component).setForeground(Color.WHITE);
-      ((JLabel) component).setFont(new Font("Arial", Font.BOLD, 30));
-    }
-    else if (component instanceof JTextField) {
-      ((JTextField) component).setMargin(new Insets(margins[0], margins[1], margins[2], margins[3]));
-    }
+  private <T extends JComponent> void formatInputs(T component, int fontStyle, Color color, int... margins) {
+    component.setFont(new Font("Arial", fontStyle, 30));
+    component.setForeground(color);
     component.setMaximumSize(component.getPreferredSize());
     component.setAlignmentX(Component.CENTER_ALIGNMENT);
+    if (margins.length == 4) {
+      Insets insets = new Insets(margins[0], margins[1], margins[2], margins[3]);
+      switch (component) {
+        case JButton jButton -> jButton.setMargin(insets);
+        case JTextField jTextField -> jTextField.setMargin(insets);
+        case JLabel jLabel -> jLabel.setBorder(new EmptyBorder(margins[0], margins[1], margins[2], margins[3]));
+        default -> {
+        }
+      }
+    }
   }
 
   private void formatPanel() {
