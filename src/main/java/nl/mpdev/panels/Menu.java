@@ -19,6 +19,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
+import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 
 public class Menu extends JPanel implements ActionListener, KeyListener {
@@ -80,6 +81,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
       String inputText = nameField.getText();
       System.out.println(inputText);
       Player.getInstance().setName(inputText);
+      GameManager.getInstance().getGrid().setKeysEnabled(true);
       this.setVisible(false);
     }
   }

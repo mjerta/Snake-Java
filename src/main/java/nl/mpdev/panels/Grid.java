@@ -23,6 +23,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Timer timer;
 
   private boolean isRunning = true;
+  private boolean keysEnabled = true;
   private final int initialSpeed;
   private Snake snake;
   private Apple apple;
@@ -31,6 +32,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Player player;
 
   public Grid(int width, int height, double cellSize) {
+    System.out.println(this.keysEnabled);
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
@@ -170,16 +172,18 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   }
 
   private void togglePause() {
-    isRunning = !isRunning;
     if (isRunning) {
       timer.stop();
     } else {
       timer.start();
     }
+    isRunning = !isRunning;
   }
 
   @Override
   public void keyTyped(KeyEvent e) {
+    if (!keysEnabled)
+      return;
     if (snake != null) {
       Direction currentDirection = snake.getDirection();
       switch (e.getKeyChar()) {
@@ -210,24 +214,28 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
           togglePause();
           break;
         case 'm':
+          keysEnabled = false;
+          togglePause();
           GameManager.getInstance().getMenu().setVisible(true);
-          isRunning = false;
           break;
         default:
           break;
       }
     }
-
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
+    if (!keysEnabled)
+      return;
     if (e.getKeyCode() == KeyEvent.VK_SPACE)
       timer.setDelay(50);
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
+    if (!keysEnabled)
+      return;
     if (snake != null) {
       Direction currentDirection = snake.getDirection();
       switch (e.getKeyCode()) {
@@ -276,5 +284,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   public void setRunning(boolean running) {
     isRunning = running;
+  }
+
+  public void setKeysEnabled(boolean keysEnabled) {
+    this.keysEnabled = keysEnabled;
   }
 }
