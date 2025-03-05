@@ -171,13 +171,14 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
   }
 
-  private void togglePause() {
+  protected void togglePause() {
     if (isRunning) {
       timer.stop();
+      isRunning = false;
     } else {
       timer.start();
+      isRunning = true;
     }
-    isRunning = !isRunning;
   }
 
   @Override
@@ -215,7 +216,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
           break;
         case 'm':
           keysEnabled = false;
-          togglePause();
+          if (isRunning) {
+            togglePause();
+          }
           GameManager.getInstance().getMenu().setVisible(true);
           break;
         default:

@@ -81,8 +81,11 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
       String inputText = nameField.getText();
       System.out.println(inputText);
       Player.getInstance().setName(inputText);
-      GameManager.getInstance().getGrid().setKeysEnabled(true);
+      Grid grid = GameManager.getInstance().getGrid();
+      grid.setKeysEnabled(true);
       this.setVisible(false);
+      grid.setRunning(true);
+      grid.getTimer().start();
     }
   }
 
