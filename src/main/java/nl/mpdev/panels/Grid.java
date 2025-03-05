@@ -21,6 +21,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Timer timer;
+
+  private boolean isRunning = true;
+  private boolean keysEnabled = true;
   private final int initialSpeed;
   private Snake snake;
   private Apple apple;
@@ -29,6 +32,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Player player;
 
   public Grid(int width, int height, double cellSize) {
+    System.out.println(this.keysEnabled);
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
@@ -49,6 +53,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
+    if (!isRunning) {
+      drawPauseState(g);
+    }
     if (snake == null) {
       drawGameOver(g);
     }
@@ -144,6 +151,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.drawString("Press Enter to restart", width / 2 - 115, height / 2 + 50);
   }
 
+  private void drawPauseState(Graphics g){
+    g.setColor(Color.WHITE);
+    g.setFont(new Font("Arial", Font.BOLD, 50));
+    int scoreboard = ScoreBoard.getInstance().getWidth();
+    g.drawString("Paused", width / 2 - scoreboard / 2 , height / 2);
+  }
+
   private void handleAppleCollision() {
     snake.grow(cellSize);
     player.increaseScore();
@@ -167,8 +181,21 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
   }
 
+  protected void togglePause() {
+    if (isRunning) {
+      timer.stop();
+      isRunning = false;
+    } else {
+      timer.start();
+      isRunning = true;
+    }
+    repaint();
+  }
+
   @Override
   public void keyTyped(KeyEvent e) {
+    if (!keysEnabled)
+      return;
     if (snake != null) {
       Direction currentDirection = snake.getDirection();
       switch (e.getKeyChar()) {
@@ -195,21 +222,34 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         case 'g':
           snake.grow(cellSize);
           break;
+        case 'p':
+          togglePause();
+          break;
+        case 'm':
+          keysEnabled = false;
+          if (isRunning) {
+            togglePause();
+          }
+          GameManager.getInstance().getMenu().activateMenu();
+          break;
         default:
           break;
       }
     }
-
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
+    if (!keysEnabled)
+      return;
     if (e.getKeyCode() == KeyEvent.VK_SPACE)
       timer.setDelay(50);
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
+    if (!keysEnabled)
+      return;
     if (snake != null) {
       Direction currentDirection = snake.getDirection();
       switch (e.getKeyCode()) {
@@ -233,12 +273,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
             snake.setDirection(Direction.UP);
             break;
           }
-        case 10:
-          reset();
-          break;
-        case 27:
-          System.exit(0);
-          break;
         case 32:
           timer.setDelay(initialSpeed);
           break;
@@ -246,5 +280,27 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
           break;
       }
     }
+    switch (e.getKeyCode()) {
+      case 10:
+        reset();
+        break;
+      case 27:
+        System.exit(0);
+        break;
+      default:
+        break;
+    }
+  }
+
+  public Timer getTimer() {
+    return timer;
+  }
+
+  public void setRunning(boolean running) {
+    isRunning = running;
+  }
+
+  public void setKeysEnabled(boolean keysEnabled) {
+    this.keysEnabled = keysEnabled;
   }
 }

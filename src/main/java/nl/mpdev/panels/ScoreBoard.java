@@ -48,6 +48,7 @@ public class ScoreBoard extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
+    System.out.println("test");
     drawScore(g);
   }
 

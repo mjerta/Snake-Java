@@ -3,19 +3,18 @@ package nl.mpdev;
 import nl.mpdev.panels.ScoreBoard;
 
 public class Player {
-  private final String name;
+  private String name;
   private int score = 0;
 
   private boolean wonRound = false;
   private static Player INSTANCE;
 
-  private Player(String name) {
-    this.name = name;
+  private Player() {
   }
 
   public static Player getInstance() {
     if (INSTANCE == null) {
-      INSTANCE = new Player("Player 1");
+      INSTANCE = new Player();
     }
     return INSTANCE;
   }
@@ -44,5 +43,9 @@ public class Player {
 
   public void setWonRound(boolean wonRound) {
     this.wonRound = wonRound;
+  }
+
+  public void setName(String name) {
+    this.name = name;
   }
 }
