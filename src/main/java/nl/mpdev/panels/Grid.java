@@ -53,6 +53,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     super.paintComponent(g);
     g.setColor(Color.BLACK);
     drawGrid(g);
+    if (!isRunning) {
+      drawPauseState(g);
+    }
     if (snake == null) {
       drawGameOver(g);
     }
@@ -148,6 +151,13 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.drawString("Press Enter to restart", width / 2 - 115, height / 2 + 50);
   }
 
+  private void drawPauseState(Graphics g){
+    g.setColor(Color.WHITE);
+    g.setFont(new Font("Arial", Font.BOLD, 50));
+    int scoreboard = ScoreBoard.getInstance().getWidth();
+    g.drawString("Paused", width / 2 - scoreboard / 2 , height / 2);
+  }
+
   private void handleAppleCollision() {
     snake.grow(cellSize);
     player.increaseScore();
@@ -179,6 +189,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       timer.start();
       isRunning = true;
     }
+    repaint();
   }
 
   @Override
