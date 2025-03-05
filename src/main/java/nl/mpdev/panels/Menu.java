@@ -75,6 +75,12 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     this.add(inputPanel);
   }
 
+  protected void activateMenu() {
+    this.setVisible(true);
+    this.nameField.requestFocusInWindow();
+  }
+
+
   @Override
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submitButton) {
@@ -86,6 +92,7 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
       this.setVisible(false);
       grid.setRunning(true);
       grid.getTimer().start();
+      this.nameField.requestFocusInWindow();
     }
   }
 
@@ -105,5 +112,13 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     if (e.getKeyCode() == 27) {
       System.exit(0);
     }
+    if (e.getKeyCode() == 85) {
+      nameField.requestFocusInWindow();
+    }
+    System.out.println(e.getKeyCode());
+  }
+
+  public JTextField getNameField() {
+    return this.getNameField();
   }
 }

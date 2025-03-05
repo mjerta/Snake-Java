@@ -219,7 +219,7 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
           if (isRunning) {
             togglePause();
           }
-          GameManager.getInstance().getMenu().setVisible(true);
+          GameManager.getInstance().getMenu().activateMenu();
           break;
         default:
           break;
