@@ -21,6 +21,8 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final int width;
   private final int height;
   private final Timer timer;
+
+  private boolean isRunning = true;
   private final int initialSpeed;
   private Snake snake;
   private Apple apple;
@@ -167,6 +169,15 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     }
   }
 
+  private void togglePause() {
+    isRunning = !isRunning;
+    if (isRunning) {
+      timer.stop();
+    } else {
+      timer.start();
+    }
+  }
+
   @Override
   public void keyTyped(KeyEvent e) {
     if (snake != null) {
@@ -195,9 +206,12 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         case 'g':
           snake.grow(cellSize);
           break;
+        case 'p':
+          togglePause();
+          break;
         case 'm':
           GameManager.getInstance().getMenu().setVisible(true);
-          timer.stop();
+          isRunning = false;
           break;
         default:
           break;
@@ -258,5 +272,9 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
 
   public Timer getTimer() {
     return timer;
+  }
+
+  public void setRunning(boolean running) {
+    isRunning = running;
   }
 }

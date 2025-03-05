@@ -14,12 +14,10 @@ public class GameManager extends JFrame {
   private int scoreToWin = 150;
   private Menu menu;
   private Grid grid;
-  private boolean isRunning;
 
   private GameManager() throws HeadlessException {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
-    this.isRunning = false;
     // SETUP PANELS
     JLayeredPane layeredPane = new JLayeredPane();
     layeredPane.setLayout(new OverlayLayout(layeredPane));
