@@ -32,6 +32,8 @@ public class ScoreBoard extends JPanel {
     g.drawString("Level: " + GameManager.getInstance().getLevel(), 20, 40);
     g.drawString("Player: " + Player.getInstance().getName(), 20, 80);
     g.drawString("Score: " + Player.getInstance().getScore(), 20, 120);
+    g.setFont(new Font("Arial", Font.PLAIN, 13));
+    g.drawString("Press i to view instructions", 20, 240);
   }
 
   public void addVictoryMessage() {

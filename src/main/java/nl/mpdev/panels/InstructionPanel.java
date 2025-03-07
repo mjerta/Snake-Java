@@ -1,6 +1,7 @@
 package nl.mpdev.panels;
 
 import java.awt.BorderLayout;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -12,5 +13,6 @@ public class InstructionPanel extends JPanel {
   public InstructionPanel() {
     this.setLayout(new BorderLayout());
     this.setVisible(false);    
+    instructionLines = new HashMap<>();
   }
 }
