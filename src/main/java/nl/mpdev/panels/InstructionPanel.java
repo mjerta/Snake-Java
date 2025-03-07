@@ -11,6 +11,6 @@ public class InstructionPanel extends JPanel {
 
   public InstructionPanel() {
     this.setLayout(new BorderLayout());
-    
+    this.setVisible(false);    
   }
 }
