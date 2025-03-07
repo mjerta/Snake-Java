@@ -33,13 +33,16 @@ public class GameManager extends JFrame {
     mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
 
     layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+    layeredPane.add(instructionPanel, JLayeredPane.PALETTE_LAYER);
     layeredPane.add(menu, JLayeredPane.MODAL_LAYER);
 
     this.add(layeredPane);
     this.pack();
     SwingUtilities.invokeLater(() -> {
+      instructionPanel.setPreferredSize(new Dimension(getWidth(), getHeight()));
+      instructionPanel.revalidate();
+      instructionPanel.repaint();
       menu.setPreferredSize(new Dimension(getWidth(), getHeight()));
-      System.out.println(menu.getWidth() + " " + menu.getHeight());
       menu.revalidate();
       menu.repaint();
     });
