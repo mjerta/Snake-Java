@@ -6,10 +6,10 @@ import java.util.Map;
 
 import javax.swing.JPanel;
 
-public class Instructions extends JPanel {
+public class InstructionPanel extends JPanel {
   private Map<List, List> instructionLines;
 
-  public Instructions() {
+  public InstructionPanel() {
     this.setLayout(new BorderLayout());
     
   }
