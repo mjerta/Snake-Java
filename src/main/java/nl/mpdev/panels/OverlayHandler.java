@@ -1,4 +1,4 @@
 package nl.mpdev.panels;
 public interface OverlayHandler{
-  void activatePanel();
+  public void activatePanel();
 }
