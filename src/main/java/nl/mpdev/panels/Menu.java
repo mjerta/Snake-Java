@@ -22,7 +22,7 @@ import javax.swing.border.EmptyBorder;
 import nl.mpdev.GameManager;
 import nl.mpdev.Player;
 
-public class Menu extends JPanel implements ActionListener, KeyListener {
+public class Menu extends JPanel implements ActionListener, KeyListener, OverlayHandler {
   private JPanel inputPanel;
   private JLabel nameLabel;
   private JTextField nameField;
@@ -75,11 +75,11 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
     this.add(inputPanel);
   }
 
-  protected void activateMenu() {
+  @Override
+  public void activatePanel() {
     this.setVisible(true);
     this.nameField.requestFocusInWindow();
   }
-
 
   @Override
   public void actionPerformed(ActionEvent e) {
@@ -121,4 +121,5 @@ public class Menu extends JPanel implements ActionListener, KeyListener {
   public JTextField getNameField() {
     return this.getNameField();
   }
+
 }

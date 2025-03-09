@@ -82,4 +82,7 @@ public class GameManager extends JFrame {
   public Grid getGrid() {
     return grid;
   }
+  public InstructionPanel getInstuctionPanel(){
+    return instructionPanel;
+  }
 }
