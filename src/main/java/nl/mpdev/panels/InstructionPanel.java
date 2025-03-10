@@ -8,11 +8,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import nl.mpdev.GameManager;
 
 public class InstructionPanel extends JPanel implements OverlayHandler, KeyListener {
+  private JPanel detailsPanel;
   private Map<List, List> instructionLines;
 
   public InstructionPanel() {
@@ -20,6 +22,8 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
     this.setVisible(false);
     this.addKeyListener(this);
     this.setBackground(Color.BLACK);
+    this.detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
+    this.add(detailsPanel);
     instructionLines = new HashMap<>();
   }
 
@@ -43,11 +47,9 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
 
   @Override
   public void keyPressed(KeyEvent e) {
-    System.out.println(e.getKeyCode());
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
-    System.out.println(e.getKeyCode());
   }
 }
