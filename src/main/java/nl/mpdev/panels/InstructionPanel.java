@@ -31,23 +31,23 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
 
   @Override
   public void keyTyped(KeyEvent e) {
-    System.out.println("test");
-    System.out.println(e.getKeyCode());
-    if (e.getKeyCode() == 'i') {
+    System.out.println(e.getKeyChar());
+    if (e.getKeyChar() == 'i') {
       Grid grid = GameManager.getInstance().getGrid();
       grid.setKeysEnabled(true);
       this.setVisible(false);
       grid.setRunning(true);
       grid.getTimer().start();
     }
-
   }
 
   @Override
   public void keyPressed(KeyEvent e) {
+    System.out.println(e.getKeyCode());
   }
 
   @Override
   public void keyReleased(KeyEvent e) {
+    System.out.println(e.getKeyCode());
   }
 }
