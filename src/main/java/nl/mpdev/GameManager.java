@@ -8,6 +8,8 @@ import nl.mpdev.panels.ScoreBoard;
 import javax.swing.*;
 
 import java.awt.*;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
@@ -26,7 +28,11 @@ public class GameManager extends JFrame {
 
     JPanel mainPanel = new JPanel();
     menu = new Menu();
-    instructionPanel = new InstructionPanel();
+    Map<String,String> instructions = new HashMap<>();
+    instructions.put("w,s,a,d", "These keys are used to move arround the grid");
+    instructions.put("Arrow keys", "These keys are used to move arround the grid");
+
+    instructionPanel = new InstructionPanel(instructions);
     grid = new Grid(640, 640, 20);
     // The 2 panels that will hold some sub panels
     mainPanel.add(grid, BorderLayout.WEST);
