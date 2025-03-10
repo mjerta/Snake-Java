@@ -2,11 +2,13 @@ package nl.mpdev.panels;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
 
 import javax.swing.BoxLayout;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import nl.mpdev.GameManager;
@@ -23,6 +25,28 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
     this.setBackground(Color.BLACK);
     this.detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
     this.add(detailsPanel);
+    formatInstructionLines();
+  }
+
+  private void formatInstructionLines(){
+    instructionLines.forEach((firstPart, secondPart) -> {
+      JPanel linePanel = new JPanel();
+      linePanel.setLayout(new BorderLayout());
+
+      JLabel firstPartLabel = new JLabel(firstPart + ": ");
+      firstPartLabel.setFont(new Font("Arial",Font.BOLD, 14));
+      firstPartLabel.setForeground(Color.WHITE);
+      
+      JLabel secondPartLabel = new JLabel(secondPart);
+      secondPartLabel.setFont(new Font("Arial", Font.BOLD, 14));
+      secondPartLabel.setForeground(Color.WHITE);
+      
+      //Putting everything together
+
+      linePanel.add(firstPartLabel, BorderLayout.WEST);
+      linePanel.add(secondPartLabel, BorderLayout.EAST);
+      detailsPanel.add(linePanel);
+    });
   }
 
   @Override
