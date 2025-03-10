@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.swing.BoxLayout;
@@ -15,16 +13,16 @@ import nl.mpdev.GameManager;
 
 public class InstructionPanel extends JPanel implements OverlayHandler, KeyListener {
   private JPanel detailsPanel;
-  private Map<List, List> instructionLines;
+  private Map<String, String> instructionLines;
 
-  public InstructionPanel() {
+  public InstructionPanel(Map<String,String> instructionLines) {
+    this.instructionLines = instructionLines;
     this.setLayout(new BorderLayout());
     this.setVisible(false);
     this.addKeyListener(this);
     this.setBackground(Color.BLACK);
     this.detailsPanel.setLayout(new BoxLayout(detailsPanel, BoxLayout.Y_AXIS));
     this.add(detailsPanel);
-    instructionLines = new HashMap<>();
   }
 
   @Override
