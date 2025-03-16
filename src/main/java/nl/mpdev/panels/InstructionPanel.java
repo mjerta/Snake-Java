@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.Map;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
 import nl.mpdev.GameManager;
 
@@ -12,6 +13,7 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
   private Map<String, String> instructionLines;
 
   public InstructionPanel(Map<String, String> instructionLines) {
+    this.setBorder(new EmptyBorder(10, 10, 10, 10));
     this.instructionLines = instructionLines;
     this.setBackground(Color.BLACK);
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use this panel for layout
