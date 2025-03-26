@@ -40,7 +40,8 @@ public class GameManager extends JFrame {
     instructions.put("Space", "Speed boost");
     instructions.put("g", "Grow snake");
     instructions.put("i", "Toggle instruction menu");
-    instructions.put("esc", "Exit game");
+    instructions.put("Enter", "Enter to restart/continue the game");
+    instructions.put("Esc", "Exit game");
 
     instructionPanel = new InstructionPanel(instructions);
     grid = new Grid(640, 640, 20);
