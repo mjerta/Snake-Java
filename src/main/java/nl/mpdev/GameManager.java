@@ -29,8 +29,18 @@ public class GameManager extends JFrame {
     JPanel mainPanel = new JPanel();
     menu = new Menu();
     Map<String,String> instructions = new HashMap<>();
-    instructions.put("w,s,a,d", "These keys are used to move arround the grid");
-    instructions.put("Arrow keys", "These keys are used to move arround the grid");
+    instructions.put("w", "Move up");
+    instructions.put("s", "Move down");
+    instructions.put("a", "Move left");
+    instructions.put("d", "Move right");
+    instructions.put("Arrow up", "Move up");
+    instructions.put("Arrow down", "Move down");
+    instructions.put("Arrow left", "Move left");
+    instructions.put("Arrow right", "Move right");
+    instructions.put("Space", "Speed boost");
+    instructions.put("g", "Grow snake");
+    instructions.put("i", "Toggle instruction menu");
+    instructions.put("esc", "Exit game");
 
     instructionPanel = new InstructionPanel(instructions);
     grid = new Grid(640, 640, 20);
