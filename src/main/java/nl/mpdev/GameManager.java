@@ -8,8 +8,6 @@ import nl.mpdev.panels.ScoreBoard;
 import javax.swing.*;
 
 import java.awt.*;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 public class GameManager extends JFrame {
   private static GameManager INSTANCE;
@@ -28,22 +26,7 @@ public class GameManager extends JFrame {
 
     JPanel mainPanel = new JPanel();
     menu = new Menu();
-    Map<String,String> instructions = new LinkedHashMap<>();
-    instructions.put("w", "Move up");
-    instructions.put("s", "Move down");
-    instructions.put("a", "Move left");
-    instructions.put("d", "Move right");
-    instructions.put("Arrow up", "Move up");
-    instructions.put("Arrow down", "Move down");
-    instructions.put("Arrow left", "Move left");
-    instructions.put("Arrow right", "Move right");
-    instructions.put("Space", "Speed boost");
-    instructions.put("g", "Grow snake");
-    instructions.put("i", "Toggle instruction menu");
-    instructions.put("Enter", "Enter to restart/continue the game");
-    instructions.put("Esc", "Exit game");
-
-    instructionPanel = new InstructionPanel(instructions);
+    instructionPanel = new InstructionPanel();
     grid = new Grid(640, 640, 20);
     // The 2 panels that will hold some sub panels
     mainPanel.add(grid, BorderLayout.WEST);

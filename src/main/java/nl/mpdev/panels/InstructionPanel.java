@@ -12,11 +12,9 @@ import nl.mpdev.GameManager;
 import nl.mpdev.enums.Instruction;
 
 public class InstructionPanel extends JPanel implements OverlayHandler, KeyListener {
-  private Map<String, String> instructionLines;
 
-  public InstructionPanel(Map<String, String> instructionLines) {
+  public InstructionPanel() {
     this.setBorder(new EmptyBorder(10, 250, 10, 250));
-    this.instructionLines = instructionLines;
     this.setBackground(Color.BLACK);
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use this panel for layout
     this.setVisible(false);
