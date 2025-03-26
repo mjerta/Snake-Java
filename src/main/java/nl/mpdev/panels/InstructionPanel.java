@@ -13,7 +13,7 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
   private Map<String, String> instructionLines;
 
   public InstructionPanel(Map<String, String> instructionLines) {
-    this.setBorder(new EmptyBorder(10, 10, 10, 10));
+    this.setBorder(new EmptyBorder(10, 250, 10, 250));
     this.instructionLines = instructionLines;
     this.setBackground(Color.BLACK);
     this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS)); // Use this panel for layout
@@ -31,7 +31,7 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
       linePanel.setBackground(Color.BLACK);
 
       // Left-aligned label
-      JLabel firstPartLabel = new JLabel(firstPart + ": ");
+      JLabel firstPartLabel = new JLabel(firstPart + " ");
       firstPartLabel.setFont(new Font("Arial", Font.BOLD, 14));
       firstPartLabel.setForeground(Color.WHITE);
 
