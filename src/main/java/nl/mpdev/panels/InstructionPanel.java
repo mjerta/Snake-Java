@@ -3,11 +3,13 @@ package nl.mpdev.panels;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Arrays;
 import java.util.Map;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 
 import nl.mpdev.GameManager;
+import nl.mpdev.enums.Instruction;
 
 public class InstructionPanel extends JPanel implements OverlayHandler, KeyListener {
   private Map<String, String> instructionLines;
@@ -25,18 +27,18 @@ public class InstructionPanel extends JPanel implements OverlayHandler, KeyListe
   private void formatInstructionLines() {
     this.add(Box.createVerticalGlue()); // Pushes content towards the center
 
-    instructionLines.forEach((firstPart, secondPart) -> {
+    Arrays.stream(Instruction.values()).forEach(instruction -> {
       // Create a row panel
       JPanel linePanel = new JPanel(new BorderLayout());
       linePanel.setBackground(Color.BLACK);
 
       // Left-aligned label
-      JLabel firstPartLabel = new JLabel(firstPart + " ");
+      JLabel firstPartLabel = new JLabel(instruction.getKey() + " ");
       firstPartLabel.setFont(new Font("Arial", Font.BOLD, 14));
       firstPartLabel.setForeground(Color.WHITE);
 
       // Right-aligned label
-      JLabel secondPartLabel = new JLabel(secondPart);
+      JLabel secondPartLabel = new JLabel(instruction.getDescription());
       secondPartLabel.setFont(new Font("Arial", Font.BOLD, 14));
       secondPartLabel.setForeground(Color.WHITE);
 
