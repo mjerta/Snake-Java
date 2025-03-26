@@ -8,7 +8,7 @@ import nl.mpdev.panels.ScoreBoard;
 import javax.swing.*;
 
 import java.awt.*;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class GameManager extends JFrame {
@@ -28,7 +28,7 @@ public class GameManager extends JFrame {
 
     JPanel mainPanel = new JPanel();
     menu = new Menu();
-    Map<String,String> instructions = new HashMap<>();
+    Map<String,String> instructions = new LinkedHashMap<>();
     instructions.put("w", "Move up");
     instructions.put("s", "Move down");
     instructions.put("a", "Move left");
