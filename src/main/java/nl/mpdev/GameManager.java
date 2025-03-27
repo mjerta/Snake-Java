@@ -1,5 +1,6 @@
 package nl.mpdev;
 
+import nl.mpdev.panels.Background;
 import nl.mpdev.panels.Grid;
 import nl.mpdev.panels.Menu;
 import nl.mpdev.panels.InstructionPanel;
@@ -18,10 +19,10 @@ public class GameManager extends JFrame {
   private Grid grid;
 
   private GameManager() throws HeadlessException {
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setTitle("Snake (Java)");
     // SETUP PANELS
     JLayeredPane layeredPane = new JLayeredPane();
+    layeredPane.setOpaque(true);
     layeredPane.setLayout(new OverlayLayout(layeredPane));
 
     JPanel mainPanel = new JPanel();
@@ -46,8 +47,8 @@ public class GameManager extends JFrame {
       menu.revalidate();
       menu.repaint();
     });
-    this.setResizable(false);
     this.setVisible(true);
+    this.setResizable(false);
   }
 
   public static GameManager getInstance() {
@@ -82,7 +83,8 @@ public class GameManager extends JFrame {
   public Grid getGrid() {
     return grid;
   }
-  public InstructionPanel getInstuctionPanel(){
+
+  public InstructionPanel getInstuctionPanel() {
     return instructionPanel;
   }
 }
