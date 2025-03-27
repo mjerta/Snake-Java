@@ -14,6 +14,7 @@ public enum Instruction {
   G("g", "Grow snake"),
   I("i", "Toggle instruction menu"),
   ENTER("Enter", "Enter to restart/continue the game"),
+  PAUSE("p", "Pause the game"),
   ESC("Esc", "Exit game");
 
   private final String key;
