@@ -151,11 +151,11 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     g.drawString("Press Enter to restart", width / 2 - 115, height / 2 + 50);
   }
 
-  private void drawPauseState(Graphics g){
+  private void drawPauseState(Graphics g) {
     g.setColor(Color.WHITE);
     g.setFont(new Font("Arial", Font.BOLD, 50));
     int scoreboard = ScoreBoard.getInstance().getWidth();
-    g.drawString("Paused", width / 2 - scoreboard / 2 , height / 2);
+    g.drawString("Paused", width / 2 - scoreboard / 2, height / 2);
   }
 
   private void handleAppleCollision() {
@@ -225,12 +225,19 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
         case 'p':
           togglePause();
           break;
+        case 'i':
+          keysEnabled = false;
+          if (isRunning) {
+            togglePause();
+          }
+          GameManager.getInstance().getInstuctionPanel().activatePanel();
+          break;
         case 'm':
           keysEnabled = false;
           if (isRunning) {
             togglePause();
           }
-          GameManager.getInstance().getMenu().activateMenu();
+          GameManager.getInstance().getMenu().activatePanel();
           break;
         default:
           break;
