@@ -37,7 +37,7 @@ public class Background extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-    if (scaledImage == null) {
+    if (scaledImage == null || scaledImage.getWidth(null) != getWidth() || scaledImage.getHeight(null) != getHeight()) {
       scaleImage();
     } else {
       g.drawImage(scaledImage, 0, 0, this);
