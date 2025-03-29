@@ -32,19 +32,15 @@ public class Snake implements GridComponent {
     switch (direction) {
       case LEFT:
         head.setX(head.getX() - velocity);
-        System.out.println("Left");
         break;
       case RIGHT:
         head.setX(head.getX() + velocity);
-        System.out.println("Right");
         break;
       case DOWN:
         head.setY(head.getY() + velocity);
-        System.out.println("Down");
         break;
       case UP:
         head.setY(head.getY() - velocity);
-        System.out.println("Up");
         break;
     }
   }

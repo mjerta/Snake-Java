@@ -5,7 +5,6 @@ import nl.mpdev.Player;
 
 import javax.swing.*;
 import java.awt.*;
-import java.rmi.MarshalException;
 
 public class ScoreBoard extends JPanel {
   private static ScoreBoard INSTANCE;
@@ -50,7 +49,6 @@ public class ScoreBoard extends JPanel {
   @Override
   protected void paintComponent(Graphics g) {
     super.paintComponent(g);
-    System.out.println("test");
     drawScore(g);
   }
 

@@ -43,4 +43,13 @@ public class Background extends JPanel {
       g.drawImage(scaledImage, 0, 0, this);
     }
   }
+
+  public Image getOriginalImage() {
+    return originalImage;
+  }
+
+  public Image getScaledImage() {
+    return scaledImage;
+  }
+
 }
