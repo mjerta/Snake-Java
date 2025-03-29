@@ -21,6 +21,7 @@ import javax.swing.border.EmptyBorder;
 
 import nl.mpdev.GameManager;
 import nl.mpdev.Player;
+import nl.mpdev.interfaces.OverlayHandler;
 
 public class Menu extends JPanel implements ActionListener, KeyListener, OverlayHandler {
   private JPanel inputPanel;
@@ -85,7 +86,6 @@ public class Menu extends JPanel implements ActionListener, KeyListener, Overlay
   public void actionPerformed(ActionEvent e) {
     if (e.getSource() == submitButton) {
       String inputText = nameField.getText();
-      System.out.println(inputText);
       Player.getInstance().setName(inputText);
       Grid grid = GameManager.getInstance().getGrid();
       grid.setKeysEnabled(true);
@@ -115,7 +115,6 @@ public class Menu extends JPanel implements ActionListener, KeyListener, Overlay
     if (e.getKeyCode() == 85) {
       nameField.requestFocusInWindow();
     }
-    System.out.println(e.getKeyCode());
   }
 
   public JTextField getNameField() {

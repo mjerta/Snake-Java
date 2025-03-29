@@ -32,7 +32,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
   private final Player player;
 
   public Grid(int width, int height, double cellSize) {
-    System.out.println(this.keysEnabled);
     this.setBackground(Color.BLACK);
     this.width = width;
     this.height = height;
@@ -139,7 +138,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
     ladder = null;
     repaint();
     timer.stop();
-    System.out.println("The game has stopped, the snake is dead!");
   }
 
   private void drawGameOver(Graphics g) {
@@ -165,7 +163,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       this.apple = null;
       this.ladder = GridComponentFactory.createLadder(cellSize, new Dimension(width, height));
     } else {
-      System.out.println(player.getScore());// log out score in console
       apple.respawn();
     }
   }
@@ -177,7 +174,6 @@ public class Grid extends JPanel implements ActionListener, KeyListener {
       ScoreBoard scoreBoard = ScoreBoard.getInstance();
       scoreBoard.setVictoryMessage(true);
       scoreBoard.addVictoryMessage();
-      System.out.println("Congratulations! You have won the game!");
     }
   }
 

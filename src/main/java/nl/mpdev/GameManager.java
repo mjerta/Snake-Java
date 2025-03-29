@@ -20,20 +20,19 @@ public class GameManager extends JFrame {
 
   private GameManager() throws HeadlessException {
     this.setTitle("Snake (Java)");
-    // SETUP PANELS
+
     JLayeredPane layeredPane = new JLayeredPane();
     layeredPane.setOpaque(true);
     layeredPane.setLayout(new OverlayLayout(layeredPane));
 
     JPanel mainPanel = new JPanel();
-    menu = new Menu();
-    instructionPanel = new InstructionPanel();
     grid = new Grid(640, 640, 20);
-    // The 2 panels that will hold some sub panels
     mainPanel.add(grid, BorderLayout.WEST);
     mainPanel.add(ScoreBoard.getInstance(), BorderLayout.EAST);
-
     layeredPane.add(mainPanel, JLayeredPane.DEFAULT_LAYER);
+
+    menu = new Menu();
+    instructionPanel = new InstructionPanel();
     layeredPane.add(instructionPanel, JLayeredPane.PALETTE_LAYER);
     layeredPane.add(menu, JLayeredPane.MODAL_LAYER);
 
