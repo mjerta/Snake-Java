@@ -48,10 +48,8 @@ It features an infinite number of levels, with each level being significantly la
 
    ```
 
-```
 ## Future Improvements
 
 - **Unit Testing**: Implement unit tests to ensure the reliability and correctness of the game logic. This will involve testing individual components such as the snake movement, collision detection, and scoring system to catch bugs early and maintain code quality.
 
 - **Multiplayer Mode**: Introduce a multiplayer mode allowing two players to play on the same keyboard. This will involve adding controls for a second snake and implementing logic to handle interactions between the two snakes, such as collisions and competitive scoring.
-```
