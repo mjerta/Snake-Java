@@ -43,7 +43,7 @@ It features an infinite number of levels, with each level being significantly la
 
 3. **Run the game**:
    ```bash
-   java -jar $(find target/*.jar
+   java -jar $(find target/*.jar)
 
 
    ```
