@@ -14,7 +14,7 @@ It features an infinite number of levels, with each level being significantly la
 
 - **UI Framework**: Java Swing is used for GUI components (`JPanel`, `JFrame`).
 - **Game Logic**: A game loop with a `Timer` updates the game state at regular intervals. Collision detection is implemented for the snake and food.
-- **Design Patterns**: 
+- **Design Patterns**:
   - Singleton: `GameManager` is a single instance managing the game state.
   - Factory: Produces game objects like `Snake`, `Food`, and `Scoreboard`.
   - State Pattern: Manages different game states (e.g., `Playing`, `Paused`, `GameOver`).
@@ -29,20 +29,29 @@ It features an infinite number of levels, with each level being significantly la
 ## Getting Started
 
 1. **Clone the repository**:
+
    ```bash
    git clone https://github.com/mjerta/Snake-Java
 
+   ```
+
 2. **Build the project**:
+
    ```bash
    mvn clean package
    ```
 
 3. **Run the game**:
    ```bash
-   mvn exec:java -Dexec.mainClass="nl.mpdev.App"
+   java -jar $(find target/*.jar
+
+
    ```
+
+```
 ## Future Improvements
 
 - **Unit Testing**: Implement unit tests to ensure the reliability and correctness of the game logic. This will involve testing individual components such as the snake movement, collision detection, and scoring system to catch bugs early and maintain code quality.
 
 - **Multiplayer Mode**: Introduce a multiplayer mode allowing two players to play on the same keyboard. This will involve adding controls for a second snake and implementing logic to handle interactions between the two snakes, such as collisions and competitive scoring.
+```
